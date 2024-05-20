@@ -57,7 +57,7 @@ ha-card {
   cursor: pointer;
 }
 
-@keyframes cleaning {
+@keyframes mowing {
   0% {
     transform: rotate(0) translate(0);
   }
@@ -126,7 +126,24 @@ ha-card {
   }
 }
 
-.vacuum {
+@-moz-keyframes spin {
+  100% { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  100% {
+      -webkit-transform: rotate(360deg);
+      transform:rotate(360deg);
+  }
+}
+
+.lawn-mower.mowing #mowerblades {
+  animation: spin 0.3s infinite linear;
+}
+
+.lawn-mower {
   display: block;
   max-width: 90%;
   max-height: 200px;
@@ -136,24 +153,24 @@ ha-card {
   filter: brightness(0.9);
 }
 
-.vacuum.on,
-.vacuum.cleaning,
-.vacuum.auto,
-.vacuum.spot,
-.vacuum.edge,
-.vacuum.single_room {
-  animation: cleaning 5s linear infinite;
+.lawn-mower.on,
+.lawn-mower.mowing,
+.lawn-mower.auto,
+.lawn-mower.spot,
+.lawn-mower.edge,
+.lawn-mower.single_room {
+  animation: mowing 5s linear infinite;
 }
 
-.vacuum.returning {
+.lawn-mower.returning {
   animation: returning 2s linear infinite;
 }
 
-.vacuum.paused {
+.lawn-mower.paused {
   opacity: 100%;
 }
 
-.vacuum.docked {
+.lawn-mower.docked {
   opacity: 50%;
 }
 
@@ -185,7 +202,7 @@ ha-card {
   margin-left: var(--vc-spacing);
 }
 
-.vacuum-name {
+.lawn-mower-name {
   text-align: center;
   font-weight: bold;
   color: var(--vc-primary-text-color);

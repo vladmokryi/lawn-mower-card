@@ -7,18 +7,18 @@ import {
 } from 'custom-card-helpers';
 import localize from './localize';
 import { customElement, property, state } from 'lit/decorators.js';
-import { Template, VacuumCardConfig } from './types';
+import { Template, LawnMowerCardConfig } from './types';
 import styles from './editor.css';
 
 type ConfigElement = HTMLInputElement & {
-  configValue?: keyof VacuumCardConfig;
+  configValue?: keyof LawnMowerCardConfig;
 };
 
-@customElement('vacuum-card-editor')
-export class VacuumCardEditor extends LitElement implements LovelaceCardEditor {
+@customElement('lawn-mower-card-editor')
+export class LawnMowerCardEditor extends LitElement implements LovelaceCardEditor {
   @property({ attribute: false }) public hass?: HomeAssistant;
 
-  @state() private config!: Partial<VacuumCardConfig>;
+  @state() private config!: Partial<LawnMowerCardConfig>;
 
   @state() private image? = undefined;
   @state() private compact_view = false;
@@ -26,11 +26,11 @@ export class VacuumCardEditor extends LitElement implements LovelaceCardEditor {
   @state() private show_status = true;
   @state() private show_toolbar = true;
 
-  setConfig(config: LovelaceCardConfig & VacuumCardConfig): void {
+  setConfig(config: LovelaceCardConfig & LawnMowerCardConfig): void {
     this.config = config;
 
     if (!this.config.entity) {
-      this.config.entity = this.getEntitiesByType('vacuum')[0] || '';
+      this.config.entity = this.getEntitiesByType('lawn-mower')[0] || '';
       fireEvent(this, 'config-changed', { config: this.config });
     }
   }
@@ -47,7 +47,7 @@ export class VacuumCardEditor extends LitElement implements LovelaceCardEditor {
       return nothing;
     }
 
-    const vacuumEntities = this.getEntitiesByType('vacuum');
+    const lawnMowerEntities = this.getEntitiesByType('lawn-mower');
     const cameraEntities = [
       ...this.getEntitiesByType('camera'),
       ...this.getEntitiesByType('image'),
@@ -67,7 +67,7 @@ export class VacuumCardEditor extends LitElement implements LovelaceCardEditor {
             required
             validationMessage=${localize('error.missing_entity')}
           >
-            ${vacuumEntities.map(
+            ${lawnMowerEntities.map(
               (entity) => html` <mwc-list-item .value=${entity}
                 >${entity}</mwc-list-item
               >`

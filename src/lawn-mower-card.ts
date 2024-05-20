@@ -13,15 +13,15 @@ import styles from './styles.css';
 import buildConfig from './config';
 import {
   Template,
-  VacuumCardAction,
-  VacuumCardConfig,
-  VacuumEntity,
+  LawnMowerCardAction,
+  LawnMowerCardConfig,
+  LawnMowerEntity,
   HassEntity,
-  VacuumEntityState,
-  VacuumServiceCallParams,
-  VacuumActionParams,
+  LawnMowerEntityState,
+  LawnMowerServiceCallParams,
+  LawnMowerActionParams,
 } from './types';
-import DEFAULT_IMAGE from './vacuum.svg';
+import DEFAULT_IMAGE from './lawn-mower.svg';
 
 registerTemplates();
 
@@ -41,11 +41,11 @@ if (!customElements.get('ha-icon-button')) {
   );
 }
 
-@customElement('vacuum-card')
-export class VacuumCard extends LitElement {
+@customElement('lawn-mower-card')
+export class LawnMowerCard extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
-  @state() private config!: VacuumCardConfig;
+  @state() private config!: LawnMowerCardConfig;
   @state() private requestInProgress = false;
   @state() private thumbUpdater: ReturnType<typeof setInterval> | null = null;
 
@@ -55,19 +55,19 @@ export class VacuumCard extends LitElement {
 
   public static async getConfigElement() {
     await import('./editor');
-    return document.createElement('vacuum-card-editor');
+    return document.createElement('lawn-mower-card-editor');
   }
 
   static getStubConfig(_: unknown, entities: string[]) {
-    const [vacuumEntity] = entities.filter((eid) => eid.startsWith('vacuum'));
+    const [lawnMowerEntity] = entities.filter((eid) => eid.startsWith('lawn-mower'));
 
     return {
-      entity: vacuumEntity ?? '',
+      entity: lawnMowerEntity ?? '',
     };
   }
 
-  get entity(): VacuumEntity {
-    return this.hass.states[this.config.entity] as VacuumEntity;
+  get entity(): LawnMowerEntity {
+    return this.hass.states[this.config.entity] as LawnMowerEntity;
   }
 
   get map(): HassEntity | null {
@@ -77,7 +77,7 @@ export class VacuumCard extends LitElement {
     return this.hass.states[this.config.map];
   }
 
-  public setConfig(config: VacuumCardConfig): void {
+  public setConfig(config: LawnMowerCardConfig): void {
     this.config = buildConfig(config);
   }
 
@@ -131,18 +131,18 @@ export class VacuumCard extends LitElement {
     );
   }
 
-  private callService(action: VacuumCardAction) {
+  private callService(action: LawnMowerCardAction) {
     const { service, service_data } = action;
     const [domain, name] = service.split('.');
     this.hass.callService(domain, name, service_data);
   }
 
-  private callVacuumService(
+  private callLawnMowerService(
     service: ServiceCallRequest['service'],
-    params: VacuumServiceCallParams = { request: true },
+    params: LawnMowerServiceCallParams = { request: true },
     options: ServiceCallRequest['serviceData'] = {},
   ) {
-    this.hass.callService('vacuum', service, {
+    this.hass.callService('lawn-mower', service, {
       entity_id: this.config.entity,
       ...options,
     });
@@ -155,23 +155,23 @@ export class VacuumCard extends LitElement {
 
   private handleSpeed(e: PointerEvent): void {
     const fan_speed = (<HTMLDivElement>e.target).getAttribute('value');
-    this.callVacuumService('set_fan_speed', { request: false }, { fan_speed });
+    this.callLawnMowerService('set_fan_speed', { request: false }, { fan_speed });
   }
 
-  private handleVacuumAction(
+  private handleLawnMowerAction(
     action: string,
-    params: VacuumActionParams = { request: true },
+    params: LawnMowerActionParams = { request: true },
   ) {
     return () => {
       if (!this.config.actions[action]) {
-        return this.callVacuumService(params.defaultService || action, params);
+        return this.callLawnMowerService(params.defaultService || action, params);
       }
 
       this.callService(this.config.actions[action]);
     };
   }
 
-  private getAttributes(entity: VacuumEntity) {
+  private getAttributes(entity: LawnMowerEntity) {
     const { status, state } = entity.attributes;
 
     return {
@@ -227,7 +227,7 @@ export class VacuumCard extends LitElement {
     `;
   }
 
-  private renderMapOrImage(state: VacuumEntityState): Template {
+  private renderMapOrImage(state: LawnMowerEntityState): Template {
     if (this.config.compact_view) {
       return nothing;
     }
@@ -249,14 +249,14 @@ export class VacuumCard extends LitElement {
 
     return html`
       <img
-        class="vacuum ${state}"
+        class="lawn-mower ${state}"
         src="${src}"
         @click="${() => this.handleMore()}"
       />
     `;
   }
 
-  private renderStats(state: VacuumEntityState): Template {
+  private renderStats(state: LawnMowerEntityState): Template {
     const statsList =
       this.config.stats[state] || this.config.stats.default || [];
 
@@ -311,7 +311,7 @@ export class VacuumCard extends LitElement {
       return nothing;
     }
 
-    return html` <div class="vacuum-name">${friendly_name}</div> `;
+    return html` <div class="lawn-mower-name">${friendly_name}</div> `;
   }
 
   private renderStatus(): Template {
@@ -336,7 +336,7 @@ export class VacuumCard extends LitElement {
     `;
   }
 
-  private renderToolbar(state: VacuumEntityState): Template {
+  private renderToolbar(state: LawnMowerEntityState): Template {
     if (!this.config.show_toolbar) {
       return nothing;
     }
@@ -347,18 +347,18 @@ export class VacuumCard extends LitElement {
       case 'spot':
       case 'edge':
       case 'single_room':
-      case 'cleaning': {
+      case 'mowing': {
         return html`
           <div class="toolbar">
-            <paper-button @click="${this.handleVacuumAction('pause')}">
+            <paper-button @click="${this.handleLawnMowerAction('pause')}">
               <ha-icon icon="hass:pause"></ha-icon>
               ${localize('common.pause')}
             </paper-button>
-            <paper-button @click="${this.handleVacuumAction('stop')}">
+            <paper-button @click="${this.handleLawnMowerAction('stop')}">
               <ha-icon icon="hass:stop"></ha-icon>
               ${localize('common.stop')}
             </paper-button>
-            <paper-button @click="${this.handleVacuumAction('return_to_base')}">
+            <paper-button @click="${this.handleLawnMowerAction('return_to_base')}">
               <ha-icon icon="hass:home-map-marker"></ha-icon>
               ${localize('common.return_to_base')}
             </paper-button>
@@ -370,7 +370,7 @@ export class VacuumCard extends LitElement {
         return html`
           <div class="toolbar">
             <paper-button
-              @click="${this.handleVacuumAction('resume', {
+              @click="${this.handleLawnMowerAction('resume', {
                 defaultService: 'start',
                 request: true,
               })}"
@@ -378,7 +378,7 @@ export class VacuumCard extends LitElement {
               <ha-icon icon="hass:play"></ha-icon>
               ${localize('common.continue')}
             </paper-button>
-            <paper-button @click="${this.handleVacuumAction('return_to_base')}">
+            <paper-button @click="${this.handleLawnMowerAction('return_to_base')}">
               <ha-icon icon="hass:home-map-marker"></ha-icon>
               ${localize('common.return_to_base')}
             </paper-button>
@@ -390,7 +390,7 @@ export class VacuumCard extends LitElement {
         return html`
           <div class="toolbar">
             <paper-button
-              @click="${this.handleVacuumAction('resume', {
+              @click="${this.handleLawnMowerAction('resume', {
                 defaultService: 'start',
                 request: true,
               })}"
@@ -398,7 +398,7 @@ export class VacuumCard extends LitElement {
               <ha-icon icon="hass:play"></ha-icon>
               ${localize('common.continue')}
             </paper-button>
-            <paper-button @click="${this.handleVacuumAction('pause')}">
+            <paper-button @click="${this.handleLawnMowerAction('pause')}">
               <ha-icon icon="hass:pause"></ha-icon>
               ${localize('common.pause')}
             </paper-button>
@@ -426,7 +426,7 @@ export class VacuumCard extends LitElement {
         const dockButton = html`
           <ha-icon-button
             label="${localize('common.return_to_base')}"
-            @click="${this.handleVacuumAction('return_to_base')}"
+            @click="${this.handleLawnMowerAction('return_to_base')}"
             ><ha-icon icon="hass:home-map-marker"></ha-icon>
           </ha-icon-button>
         `;
@@ -435,13 +435,13 @@ export class VacuumCard extends LitElement {
           <div class="toolbar">
             <ha-icon-button
               label="${localize('common.start')}"
-              @click="${this.handleVacuumAction('start')}"
+              @click="${this.handleLawnMowerAction('start')}"
               ><ha-icon icon="hass:play"></ha-icon>
             </ha-icon-button>
 
             <ha-icon-button
               label="${localize('common.locate')}"
-              @click="${this.handleVacuumAction('locate', { request: false })}"
+              @click="${this.handleLawnMowerAction('locate', { request: false })}"
               ><ha-icon icon="mdi:map-marker"></ha-icon>
             </ha-icon-button>
 
@@ -513,7 +513,7 @@ declare global {
 window.customCards = window.customCards || [];
 window.customCards.push({
   preview: true,
-  type: 'vacuum-card',
+  type: 'lawn-mower-card',
   name: localize('common.name'),
   description: localize('common.description'),
 });

@@ -9,8 +9,8 @@ export * from 'home-assistant-js-websocket';
 export type TemplateNothing = typeof nothing;
 export type Template = TemplateResult | TemplateNothing;
 
-export type VacuumEntityState =
-  | 'cleaning'
+export type LawnMowerEntityState =
+  | 'mowing'
   | 'docked'
   | 'idle'
   | 'paused'
@@ -19,21 +19,21 @@ export type VacuumEntityState =
   | 'unknown'
   | string; // for other states
 
-export interface VacuumEntityAttributes extends HassEntityAttributeBase {
-  status?: VacuumEntityState;
-  state?: VacuumEntityState;
+export interface LawnMowerEntityAttributes extends HassEntityAttributeBase {
+  status?: LawnMowerEntityState;
+  state?: LawnMowerEntityState;
   fan_speed?: string;
   fan_speed_list?: string[];
   battery_level?: number;
   battery_icon?: string;
 }
 
-export interface VacuumEntity extends HassEntityBase {
-  attributes: VacuumEntityAttributes;
-  state: VacuumEntityState;
+export interface LawnMowerEntity extends HassEntityBase {
+  attributes: LawnMowerEntityAttributes;
+  state: LawnMowerEntityState;
 }
 
-export interface VacuumCardStat {
+export interface LawnMowerCardStat {
   entity_id?: string;
   attribute?: string;
   value_template?: string;
@@ -41,36 +41,37 @@ export interface VacuumCardStat {
   subtitle?: string;
 }
 
-export interface VacuumCardAction {
+export interface LawnMowerCardAction {
   service: string;
   service_data?: Record<string, unknown>;
 }
 
-export interface VacuumCardShortcut {
+export interface LawnMowerCardShortcut {
   name?: string;
   icon?: string;
   service?: string;
   service_data?: Record<string, unknown>;
 }
 
-export interface VacuumCardConfig {
+export interface LawnMowerCardConfig {
   entity: string;
   map: string;
   map_refresh: number;
   image: string;
+  battery: string;
   show_name: boolean;
   show_status: boolean;
   show_toolbar: boolean;
   compact_view: boolean;
-  stats: Record<string, VacuumCardStat[]>;
-  actions: Record<string, VacuumCardAction>;
-  shortcuts: VacuumCardShortcut[];
+  stats: Record<string, LawnMowerCardStat[]>;
+  actions: Record<string, LawnMowerCardAction>;
+  shortcuts: LawnMowerCardShortcut[];
 }
 
-export interface VacuumServiceCallParams {
+export interface LawnMowerServiceCallParams {
   request: boolean;
 }
 
-export interface VacuumActionParams extends VacuumServiceCallParams {
+export interface LawnMowerActionParams extends LawnMowerServiceCallParams {
   defaultService?: string;
 }

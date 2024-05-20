@@ -1,8 +1,8 @@
 {
-  "name": "vacuum-card",
+  "name": "lawn-mower-card",
   "version": "2.9.3",
-  "description": "Vacuum cleaner card for Home Assistant Lovelace UI",
-  "main": "dist/vacuum-card.js",
+  "description": "Lawn Mower cleaner card for Home Assistant Lovelace UI",
+  "main": "dist/lawn-mower-card.js",
   "scripts": {
     "start": "rollup -c --watch",
     "lint": "eslint src",
@@ -19,7 +19,7 @@
     "automation",
     "lovelace",
     "custom-cards",
-    "vacuum"
+    "lawn-mower"
   ],
   "author": "Denys Dovhan <denysdovhan@gmail.com> (http://denysdovhan.com/)",
   "license": "MIT",
@@ -98,8 +98,8 @@
         {
           "assets": [
             {
-              "path": "dist/vacuum-card.js",
-              "label": "vacuum-card.js"
+              "path": "dist/lawn-mower-card.js",
+              "label": "lawn-mower-card.js"
             }
           ]
         }

@@ -1,6 +1,6 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
 
-# Vacuum Card
+# Lawn Mower Card
 
 [![npm version][npm-image]][npm-url]
 [![hacs][hacs-image]][hacs-url]
@@ -9,11 +9,11 @@
 [![Buy Me A Coffee][buymeacoffee-image]][buymeacoffee-url]
 [![Twitter][twitter-image]][twitter-url]
 
-> Vacuum cleaner card for [Home Assistant][home-assistant] Lovelace UI
+> Lawn Mower cleaner card for [Home Assistant][home-assistant] Lovelace UI
 
-By default, Home Assistant does not provide any card for controlling vacuum cleaners. This card displays the state and allows to control your robot.
+By default, Home Assistant does not provide any card for controlling lawn mowers. This card displays the state and allows to control your robot.
 
-![Preview of vacuum-card][preview-image]
+![Preview of lawn-mower-card][preview-image]
 
 ## Installing
 
@@ -31,21 +31,21 @@ Just search for `Vacuum Card` in plugins tab.
 
 ### Manual
 
-1. Download `vacuum-card.js` file from the [latest-release].
-2. Put `vacuum-card.js` file into your `config/www` folder.
-3. Add reference to `vacuum-card.js` in Lovelace. There's two way to do that:
+1. Download `lawn-mower-card.js` file from the [latest-release].
+2. Put `lawn-mower-card.js` file into your `config/www` folder.
+3. Add reference to `lawn-mower-card.js` in Lovelace. There's two way to do that:
 
-   1. **Using UI:** _Configuration_ → _Lovelace Dashboards_ → _Resources Tab_ → Click Plus button → Set _Url_ as `/local/vacuum-card.js` → Set _Resource type_ as `JavaScript Module`.
+   1. **Using UI:** _Configuration_ → _Lovelace Dashboards_ → _Resources Tab_ → Click Plus button → Set _Url_ as `/local/lawn-mower-card.js` → Set _Resource type_ as `JavaScript Module`.
       **Note:** If you do not see the Resources Tab, you will need to enable _Advanced Mode_ in your _User Profile_
    2. **Using YAML:** Add following code to `lovelace` section.
 
       ```yaml
       resources:
-        - url: /local/vacuum-card.js
+        - url: /local/lawn-mower-card.js
           type: module
       ```
 
-4. Add `custom:vacuum-card` to Lovelace UI as any other card (using either editor or YAML configuration).
+4. Add `custom:lawn-mower-card` to Lovelace UI as any other card (using either editor or YAML configuration).
 
 ## Usage
 
@@ -54,7 +54,7 @@ This card can be configured using Lovelace UI editor.
 1. In Lovelace UI, click 3 dots in top left corner.
 2. Click _Configure UI_.
 3. Click Plus button to add a new card.
-4. Find _Custom: Vacuum Card_ in the list.
+4. Find _Custom: Lawn Mower Card_ in the list.
 5. Choose `entity`.
 6. Now you should see the preview of the card!
 
@@ -63,8 +63,8 @@ _Sorry, no support for `actions`, `shortcuts` and `stats` in visual config yet._
 Typical example of using this card in YAML config would look like this:
 
 ```yaml
-type: 'custom:vacuum-card'
-entity: vacuum.vacuum_cleaner
+type: 'custom:lawn-mower-card'
+entity: lawn-mower.lawn_mower
 actions:
   start:
     service: xiaomi_miio.vacuum_clean_segment
@@ -109,7 +109,7 @@ Here is what every option means:
 
 | Name           |   Type    | Default      | Description                                                                                               |
 | -------------- | :-------: | ------------ | --------------------------------------------------------------------------------------------------------- |
-| `type`         | `string`  | **Required** | `custom:vacuum-card`                                                                                      |
+| `type`         | `string`  | **Required** | `custom:lawn-mower-card`                                                                                      |
 | `entity`       | `string`  | **Required** | An entity_id within the `vacuum` domain.                                                                  |
 | `map`          | `string`  | Optional     | An entity_id within the `camera` domain, for streaming live vacuum map.                                   |
 | `map_refresh`  | `integer` | `5`          | Update interval for map camera in seconds                                                                 |
@@ -185,7 +185,7 @@ my-custom-theme:
 You can use [`card-mod`][card-mod] to customize the card on per-card basis, like this:
 
 ```yaml
-type: 'custom:vacuum-card'
+type: 'custom:lawn-mower-card'
 style: |
   ha-card {
     --vc-background: #17A8F4;
@@ -282,8 +282,8 @@ MIT © [Denys Dovhan][denysdovhan]
 
 <!-- Badges -->
 
-[npm-url]: https://npmjs.org/package/vacuum-card
-[npm-image]: https://img.shields.io/npm/v/vacuum-card.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/lawn-mower-card
+[npm-image]: https://img.shields.io/npm/v/lawn-mower-card.svg?style=flat-square
 [hacs-url]: https://github.com/hacs/integration
 [hacs-image]: https://img.shields.io/badge/hacs-default-orange.svg?style=flat-square
 [gh-sponsors-url]: https://github.com/sponsors/denysdovhan
@@ -299,14 +299,14 @@ MIT © [Denys Dovhan][denysdovhan]
 
 [home-assistant]: https://www.home-assistant.io/
 [hacs]: https://hacs.xyz
-[preview-image]: https://github.com/denysdovhan/vacuum-card/assets/3459374/43808d3d-65a4-4e65-9531-4f248fa8861c
+[preview-image]: https://github.com/denysdovhan/lawn-mower-card/assets/3459374/43808d3d-65a4-4e65-9531-4f248fa8861c
 [cleaning-gif]: https://user-images.githubusercontent.com/3459374/81119202-fa60b500-8f32-11ea-9b23-325efa93d7ab.gif
 [returning-gif]: https://user-images.githubusercontent.com/3459374/81119452-765afd00-8f33-11ea-9dc5-9c26ba3f8c45.gif
-[latest-release]: https://github.com/denysdovhan/vacuum-card/releases/latest
+[latest-release]: https://github.com/denysdovhan/lawn-mower-card/releases/latest
 [ha-scripts]: https://www.home-assistant.io/docs/scripts/
-[edit-readme]: https://github.com/denysdovhan/vacuum-card/edit/master/README.md
+[edit-readme]: https://github.com/denysdovhan/lawn-mower-card/edit/master/README.md
 [card-mod]: https://github.com/thomasloven/lovelace-card-mod
-[add-translation]: https://github.com/denysdovhan/vacuum-card/blob/master/CONTRIBUTING.md#how-to-add-translation
+[add-translation]: https://github.com/denysdovhan/lawn-mower-card/blob/master/CONTRIBUTING.md#how-to-add-translation
 [macbury-smart-house]: https://macbury.github.io/SmartHouse/HomeAssistant/Vacuum/
 [bbbenji-card]: https://gist.github.com/bbbenji/24372e423f8669b2e6713638d8f8ceb2
 [denysdovhan]: https://denysdovhan.com

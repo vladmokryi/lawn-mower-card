@@ -1,10 +1,10 @@
 {
   "status": {
-    "cleaning": "Cleaning",
-    "auto": "Automatic cleaning",
-    "spot": "Spot cleaning",
-    "edge": "Edge cleaning",
-    "single_room": "Single room cleaning",
+    "mowing": "Mowing",
+    "auto": "Automatic mowing",
+    "spot": "Spot mowing",
+    "edge": "Edge mowing",
+    "single_room": "Single area mowing",
     "paused": "Paused",
     "idle": "Idle",
     "stop": "Stopped",
@@ -42,15 +42,15 @@
     "off": "Off"
   },
   "common": {
-    "name": "Vacuum Card",
-    "description": "Vacuum card allows you to control your robot vacuum.",
+    "name": "Lawn Mower Card",
+    "description": "Lawn Mower card allows you to control your robot lawn mower.",
     "start": "Clean",
     "continue": "Continue",
     "pause": "Pause",
     "stop": "Stop",
     "return_to_base": "Dock",
-    "locate": "Locate Vacuum",
-    "not_available": "Vacuum is not available"
+    "locate": "Locate Lawn Mower",
+    "not_available": "Lawn Mower is not available"
   },
   "error": {
     "invalid_config": "Invalid configuration",

@@ -65,7 +65,7 @@ const plugins = [
 ];
 
 export default {
-  input: 'src/vacuum-card.ts',
+  input: 'src/lawn-mower-card.ts',
   output: {
     dir: 'dist',
     format: 'es',

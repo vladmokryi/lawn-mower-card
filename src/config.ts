@@ -1,9 +1,9 @@
 import localize from './localize';
-import { VacuumCardConfig } from './types';
+import { LawnMowerCardConfig } from './types';
 
 export default function buildConfig(
-  config?: Partial<VacuumCardConfig>
-): VacuumCardConfig {
+  config?: Partial<LawnMowerCardConfig>
+): LawnMowerCardConfig {
   if (!config) {
     throw new Error(localize('error.invalid_config'));
   }
@@ -22,6 +22,7 @@ export default function buildConfig(
     map: config.map ?? '',
     map_refresh: config.map_refresh ?? 5,
     image: config.image ?? 'default',
+    battery: config.battery ?? '',
     show_name: config.show_name ?? true,
     show_status: config.show_status ?? true,
     show_toolbar: config.show_toolbar ?? true,

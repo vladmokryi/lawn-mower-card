@@ -1,10 +1,10 @@
 {
   "status": {
-    "cleaning": "Reinigen",
+    "mowing": "Mähen",
     "auto": "Automatisches Reinigen",
-    "spot": "Punktreinigung",
-    "edge": "Kantenreinigung",
-    "single_room": "Zimmerreinigung",
+    "spot": "Punktmähen",
+    "edge": "Kantenmähen",
+    "single_room": "Bereichsmähen",
     "paused": "Pausiert",
     "idle": "Untätig",
     "stop": "Angehalten",
@@ -42,15 +42,15 @@
     "off": "Aus"
   },
   "common": {
-    "name": "Vacuum Card",
-    "description": "Vacuum card ermöglicht es Ihnen, Ihr Staubsaugerroboter zu steuern.",
-    "start": "Reinigen",
+    "name": "Lawn Mower Card",
+    "description": "Lawn Mower Card ermöglicht es Ihnen, Ihr Mähroboter zu steuern.",
+    "start": "Mähen",
     "continue": "Weiter",
     "pause": "Pause",
     "stop": "Stop",
     "return_to_base": "Dock",
-    "locate": "Staubsauger lokalisieren",
-    "not_available": "Staubsaugerroboter ist nicht verfügbar"
+    "locate": "Mähroboter lokalisieren",
+    "not_available": "Mähroboter ist nicht verfügbar"
   },
   "error": {
     "invalid_config": "Ungeültige Konfiguration",
