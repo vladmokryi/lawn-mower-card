@@ -1,6 +1,6 @@
-[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
-
 # Lawn Mower Card
+
+Based on https://github.com/denysdovhan/vacuum-card
 
 [![npm version][npm-image]][npm-url]
 [![hacs][hacs-image]][hacs-url]
@@ -27,7 +27,7 @@ By default, Home Assistant does not provide any card for controlling lawn mowers
 
 This card is available in [HACS][hacs] (Home Assistant Community Store).
 
-Just search for `Vacuum Card` in plugins tab.
+Just search for `Lawn Mower Card` in plugins tab.
 
 ### Manual
 
@@ -110,25 +110,26 @@ Here is what every option means:
 | Name           |   Type    | Default      | Description                                                                                               |
 | -------------- | :-------: | ------------ | --------------------------------------------------------------------------------------------------------- |
 | `type`         | `string`  | **Required** | `custom:lawn-mower-card`                                                                                      |
-| `entity`       | `string`  | **Required** | An entity_id within the `vacuum` domain.                                                                  |
-| `map`          | `string`  | Optional     | An entity_id within the `camera` domain, for streaming live vacuum map.                                   |
+| `entity`       | `string`  | **Required** | An entity_id within the `lawn-mover` domain.                                                                  |
+| `map`          | `string`  | Optional     | An entity_id within the `camera` domain, for streaming live lawn mower map.                                   |
 | `map_refresh`  | `integer` | `5`          | Update interval for map camera in seconds                                                                 |
-| `image`        | `string`  | `default`    | Path to image of your vacuum cleaner. Better to have `png` or `svg`.                                      |
-| `show_name`    | `boolean` | `true`       | Show friendly name of the vacuum.                                                                         |
-| `show_status`  | `boolean` | `true`       | Show status of the vacuum.                                                                                |
+| `image`        | `string`  | `default`    | Path to image of your lawn mower. Better to have `png` or `svg`.                                      |
+| `battery`      | `string`  | `default`    | An entity_id within the `battery` of your lawn mower |
+| `show_name`    | `boolean` | `true`       | Show friendly name of the lawn mower.                                                                         |
+| `show_status`  | `boolean` | `true`       | Show status of the lawn mower.                                                                                |
 | `show_toolbar` | `boolean` | `true`       | Show toolbar with actions.                                                                                |
 | `compact_view` | `boolean` | `false`      | Compact view without image.                                                                               |
-| `stats`        | `object`  | Optional     | Custom per state stats for your vacuum cleaner                                                            |
+| `stats`        | `object`  | Optional     | Custom per state stats for your lawn mower                                                            |
 | `actions`      | `object`  | Optional     | Override default actions behavior with service invocations.                                               |
-| `shortcuts`    |  `array`  | Optional     | List of shortcuts shown at the right bottom part of the card with custom actions for your vacuum cleaner. |
+| `shortcuts`    |  `array`  | Optional     | List of shortcuts shown at the right bottom part of the card with custom actions for your lawn mower. |
 
 ### `stats` object
 
-You can use any attribute of vacuum or even any entity by `entity_id` to display by stats section. You can also combine `attribute` with `entity_id` to extract an attribute value of specific entity:
+You can use any attribute of lawn mower or even any entity by `entity_id` to display by stats section. You can also combine `attribute` with `entity_id` to extract an attribute value of specific entity:
 
 | Name             |   Type   | Default  | Description                                                                                          |
 | ---------------- | :------: | -------- | ---------------------------------------------------------------------------------------------------- |
-| `entity_id`      | `string` | Optional | An entity_id with state, i.e. `sensor.vacuum`.                                                       |
+| `entity_id`      | `string` | Optional | An entity_id with state, i.e. `sensor.lawn-mower`.                                                       |
 | `attribute`      | `string` | Optional | Attribute name of the stat, i.e. `filter_left`.                                                      |
 | `value_template` | `string` | Optional | Jinja2 template returning a value. `value` variable represents the `entity_id` or `attribute` state. |
 | `unit`           | `string` | Optional | Unit of measure, i.e. `hours`.                                                                       |
@@ -161,7 +162,7 @@ This card can be styled by changing the values of these CSS properties (globally
 | Variable                    | Default value                                                    | Description                          |
 | --------------------------- | ---------------------------------------------------------------- | ------------------------------------ |
 | `--vc-background`           | `var(--ha-card-background, var(--card-background-color, white))` | Background of the card               |
-| `--vc-primary-text-color`   | `var(--primary-text-color)`                                      | Vacuum name, stats values, etc       |
+| `--vc-primary-text-color`   | `var(--primary-text-color)`                                      | Lawn Mower name, stats values, etc       |
 | `--vc-secondary-text-color` | `var(--secondary-text-color)`                                    | Status, stats units and titles, etc  |
 | `--vc-icon-color`           | `var(--secondary-text-color)`                                    | Colors of icons                      |
 | `--vc-toolbar-background`   | `var(--vc-background)`                                           | Background of the toolbar            |
@@ -237,29 +238,13 @@ This card supports translations. Please, help to add more translations and impro
 
 ## Supported models
 
-This card relies on basic vacuum services, like `pause`, `start`, `stop`, `return_to_base`, etc. It should work with any robot vacuum, however I can physically test it only with my own robot vacuum.
+This card relies on basic lawn-mower services, like `pause`, `start`, `stop`, `return_to_base`, etc. It should work with any robot lawn mover, however I can physically test it only with my own robot lawn mower.
 
-If this card works with your vacuum cleaner, please open a PR and your model to the list.
+If this card works with your lawn mower, please open a PR and your model to the list.
 
-- **Roborock** S8 (Ultra Pro), S7 (MaxV), S6 (MaxV, Pure), S5 (Max), S50, S4 (Max), E25, E4, Q5 Pro
-- **Mijia** Robot Vacuum Cleaner 1C (STYTJ01ZHM)
-- **Xiaomi** Mi Robot (STYJ02YM), Mi Robot 1S, Mi Roborock V1 (SDJQR02RR), Mijia 1C, Mi Robot Vacuum-Mop P, Robot Vacuum E10
-- **Roomba** 670, 675, 676, 960980, 981, i3, i7+, e5, S9, s9+, j7
-- **Braava** M6
-- **Dyson** 360 Eye
-- **Neato** D7, D6, D4
-- **Shark** IQ
-- **Ecova**cs Deebot 950, Deebot OZMO T8 AIVI, Deebot N79, Deebot N8, Deebot N8+, T9 AIVI, Deebot T20 Ombi
-- **Eufy** Robovac 30c, Robovac 15C Max, Robovac X8 Hybrid, Robovac G40
-- **EcoVacs** T9 AIVI
-- **Dreame** Z10 Pro, L10 Pro, D9, F9
-- 360 S7 Pro
-- KaBum! Smart 500
-- Honiture Q6 Lite
-- Neabot NoMo N1 Plus
-- Kyvol E31
-- Setti+ RV800
-- [_Your vacuum?_][edit-readme]
+- **EcoVacs** GOAT G1, GOAT G1-800, GOAT G1-2000, GOAT GX-600
+
+- [_Your lawn mower?_][edit-readme]
 
 ## Development
 
@@ -272,7 +257,6 @@ First of all, thanks! Check [contributing guideline](./CONTRIBUTING.md) for more
 This project is heavily inspired by:
 
 - [MacBury Smart House][macbury-smart-house] — basically, this project is a refinement of MacBury's custom card.
-- [Benji][bbbenji-card] vacuum card — this is where I noticed this vacuum card design for the [first time](https://github.com/bbbenji/synthwave-hass/issues/29).
 
 Huge thanks for their ideas and efforts 👍
 
