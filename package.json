@@ -1,6 +1,6 @@
 {
   "name": "@bhuebschen/lawn-mower-card",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lawn Mower cleaner card for Home Assistant Lovelace UI",
   "main": "dist/lawn-mower-card.js",
   "scripts": {

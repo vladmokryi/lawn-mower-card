@@ -5,9 +5,6 @@ Based on https://github.com/denysdovhan/vacuum-card
 [![npm version][npm-image]][npm-url]
 [![hacs][hacs-image]][hacs-url]
 [![GitHub Sponsors][gh-sponsors-image]][gh-sponsors-url]
-[![Patreon][patreon-image]][patreon-url]
-[![Buy Me A Coffee][buymeacoffee-image]][buymeacoffee-url]
-[![Twitter][twitter-image]][twitter-url]
 
 > Lawn Mower card for [Home Assistant][home-assistant] Lovelace UI
 
@@ -250,18 +247,12 @@ MIT © [Benedikt Hübschen][bhuebschen]
 
 <!-- Badges -->
 
-[npm-url]: https://npmjs.org/package/lawn-mower-card
-[npm-image]: https://img.shields.io/npm/v/lawn-mower-card.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/@bhuebschen/lawn-mower-card
+[npm-image]: https://img.shields.io/npm/v/@bhuebschen/lawn-mower-card.svg?style=flat-square
 [hacs-url]: https://github.com/hacs/integration
-[hacs-image]: https://img.shields.io/badge/hacs-default-orange.svg?style=flat-square
-[gh-sponsors-url]: https://github.com/sponsors/denysdovhan
+[hacs-image]: https://img.shields.io/badge/hacs-custom-orange.svg?style=flat-square
+[gh-sponsors-url]: https://github.com/sponsors/bhuebschen
 [gh-sponsors-image]: https://img.shields.io/github/sponsors/denysdovhan?style=flat-square
-[patreon-url]: https://patreon.com/denysdovhan
-[patreon-image]: https://img.shields.io/badge/support-patreon-F96854.svg?style=flat-square
-[buymeacoffee-url]: https://patreon.com/denysdovhan
-[buymeacoffee-image]: https://img.shields.io/badge/support-buymeacoffee-222222.svg?style=flat-square
-[twitter-url]: https://twitter.com/denysdovhan
-[twitter-image]: https://img.shields.io/badge/twitter-%40denysdovhan-00ACEE.svg?style=flat-square
 
 <!-- References -->
 
