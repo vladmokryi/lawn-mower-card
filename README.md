@@ -17,12 +17,6 @@ By default, Home Assistant does not provide any card for controlling lawn mowers
 
 ## Installing
 
-**💡 Tip:** If you like this project, consider giving me a tip for the time I spent building this project:
-
-<a href="https://www.buymeacoffee.com/denysdovhan" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/default-black.png" alt="Buy Me A Coffee" width="150px">
-</a>
-
 ### HACS
 
 This card is available in [HACS][hacs] (Home Assistant Community Store).
@@ -246,13 +240,13 @@ First of all, thanks! Check [contributing guideline](./CONTRIBUTING.md) for more
 
 This project is heavily inspired by:
 
-- [MacBury Smart House][macbury-smart-house] — basically, this project is a refinement of MacBury's custom card.
+- [Denys Dovhan][denysdovhan] — basically, this project is a modified vacuum-card.
 
 Huge thanks for their ideas and efforts 👍
 
 ## License
 
-MIT © [Denys Dovhan][denysdovhan]
+MIT © [Benedikt Hübschen][bhuebschen]
 
 <!-- Badges -->
 
