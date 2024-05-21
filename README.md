@@ -9,7 +9,7 @@ Based on https://github.com/denysdovhan/vacuum-card
 [![Buy Me A Coffee][buymeacoffee-image]][buymeacoffee-url]
 [![Twitter][twitter-image]][twitter-url]
 
-> Lawn Mower cleaner card for [Home Assistant][home-assistant] Lovelace UI
+> Lawn Mower card for [Home Assistant][home-assistant] Lovelace UI
 
 By default, Home Assistant does not provide any card for controlling lawn mowers. This card displays the state and allows to control your robot.
 
@@ -123,20 +123,20 @@ You can use any attribute of lawn mower or even any entity by `entity_id` to dis
 
 You can defined service invocations to override default actions behavior. Available actions to override are `start`, `pause`, `resume`, `stop`, `locate` and `return_to_base`.
 
-| Name           |   Type   | Default                           | Description                                     |
-| -------------- | :------: | --------------------------------- | ----------------------------------------------- |
-| `service`      | `string` | Optional                          | A service to call, i.e. `script.clean_bedroom`. |
+| Name           |   Type   | Default                           | Description                                    |
+| -------------- | :------: | --------------------------------- | ---------------------------------------------- |
+| `service`      | `string` | Optional                          | A service to call, i.e. `script.mow_backyard`. |
 | `service_data` | `object` | `service_data` for `service` call |
 
 ### `shortcuts` object
 
-You can defined [custom scripts][ha-scripts] for custom actions i.e cleaning specific room and add them to this card with `shortcuts` option.
+You can defined [custom scripts][ha-scripts] for custom actions i.e mowing specific areas and add them to this card with `shortcuts` option.
 
-| Name           |   Type   | Default                           | Description                                        |
-| -------------- | :------: | --------------------------------- | -------------------------------------------------- |
-| `name`         | `string` | Optional                          | Friendly name of the action, i.e. `Clean bedroom`. |
-| `service`      | `string` | Optional                          | A service to call, i.e. `script.clean_bedroom`.    |
-| `icon`         | `string` | Optional                          | Any icon for action button.                        |
+| Name           |   Type   | Default                           | Description                                       |
+| -------------- | :------: | --------------------------------- | ------------------------------------------------- |
+| `name`         | `string` | Optional                          | Friendly name of the action, i.e. `mow backyard`. |
+| `service`      | `string` | Optional                          | A service to call, i.e. `script.mow_backyard`.    |
+| `icon`         | `string` | Optional                          | Any icon for action button.                       |
 | `service_data` | `object` | `service_data` for `service` call |
 
 ## Theming
@@ -183,7 +183,7 @@ style: |
 
 I've added some animations for this card to make it alive. Animations are applied only for `image` property. Here's how they look like:
 
-|          Cleaning           |              Docking              |
+|           Mowing            |              Docking              |
 | :-------------------------: | :-------------------------------: |
 | ![Mowing animation][mowing] | ![Returning animation][returning] |
 
