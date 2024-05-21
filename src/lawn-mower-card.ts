@@ -374,6 +374,7 @@ export class LawnMowerCard extends LitElement {
       case 'spot':
       case 'edge':
       case 'single_room':
+      case 'edgecut':
       case 'mowing': {
         return html`
           <div class="toolbar">

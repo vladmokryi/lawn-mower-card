@@ -252,7 +252,7 @@ MIT © [Benedikt Hübschen][bhuebschen]
 [hacs-url]: https://github.com/hacs/integration
 [hacs-image]: https://img.shields.io/badge/hacs-custom-orange.svg?style=flat-square
 [gh-sponsors-url]: https://github.com/sponsors/bhuebschen
-[gh-sponsors-image]: https://img.shields.io/github/sponsors/denysdovhan?style=flat-square
+[gh-sponsors-image]: https://img.shields.io/github/sponsors/bhuebschen?style=flat-square
 
 <!-- References -->
 
