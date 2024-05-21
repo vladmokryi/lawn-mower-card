@@ -284,8 +284,8 @@ MIT © [Denys Dovhan][denysdovhan]
 [home-assistant]: https://www.home-assistant.io/
 [hacs]: https://hacs.xyz
 [preview-image]: https://github.com/denysdovhan/lawn-mower-card/assets/3459374/43808d3d-65a4-4e65-9531-4f248fa8861c
-[cleaning-gif]: https://user-images.githubusercontent.com/3459374/81119202-fa60b500-8f32-11ea-9b23-325efa93d7ab.gif
-[returning-gif]: https://user-images.githubusercontent.com/3459374/81119452-765afd00-8f33-11ea-9dc5-9c26ba3f8c45.gif
+![returning](https://github.com/bhuebschen/lawn-mower-card/assets/1864448/51fbd7b7-3811-4b66-9873-852250a32efc)
+![mowing](https://github.com/bhuebschen/lawn-mower-card/assets/1864448/a5b0a42d-ff87-46db-9b50-54a4f71d9107)
 [latest-release]: https://github.com/denysdovhan/lawn-mower-card/releases/latest
 [ha-scripts]: https://www.home-assistant.io/docs/scripts/
 [edit-readme]: https://github.com/denysdovhan/lawn-mower-card/edit/master/README.md
