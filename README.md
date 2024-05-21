@@ -63,64 +63,54 @@ _Sorry, no support for `actions`, `shortcuts` and `stats` in visual config yet._
 Typical example of using this card in YAML config would look like this:
 
 ```yaml
-type: 'custom:lawn-mower-card'
-entity: lawn-mower.lawn_mower
+type: custom:lawn-mower-card
+entity: lawn_mower.lawn_mower
+battery: sensor.lawn_mower_battery
 actions:
   start:
-    service: xiaomi_miio.vacuum_clean_segment
+    service: lawn_mower.start_mowing
     service_data:
-      entity_id: vacuum.vacuum_cleaner
-      segments: [16, 20]
+      entity_id: lawn_mover.sedat
 stats:
   default:
-    - attribute: filter_left
-      unit: hours
-      subtitle: Filter
-    - attribute: side_brush_left
-      unit: hours
-      subtitle: Side brush
-    - attribute: main_brush_left
-      unit: hours
-      subtitle: Main brush
-    - attribute: sensor_dirty_left
-      unit: hours
-      subtitle: Sensors
-  cleaning:
-    - entity_id: sensor.vacuum_main_brush_left
-      value_template: '{{ (value | float(0) / 3600) | round(1) }}'
-      subtitle: Main brush
-      unit: hours
-    - attribute: cleaning_time
+    - entity_id: sensor.lawn_mower_bladeslifetime
+      unit: '%'
+      subtitle: Blades
+    - entity_id: sensor.lawn_mower_lensbruh
+      unit: '%'
+      subtitle: Lens brush
+  mowing:
+    - entity_id: sensor.lawn_mower_area_mowed
+      subtitle: Area mowed
+      unit: m²
+    - entity_id: sensor.lawn_mower_mwingtime
       unit: minutes
-      subtitle: Cleaning time
+      subtitle: Mowing time
 shortcuts:
-  - name: Clean living room
-    service: script.clean_living_room
-    icon: 'mdi:sofa'
-  - name: Clean bedroom
-    service: script.clean_bedroom
-    icon: 'mdi:bed-empty'
-  - name: Clean kitchen
-    service: script.clean_kitchen
-    icon: 'mdi:silverware-fork-knife'
+  - name: Mow backyard
+    service: script.startmow_backyard
+    icon: mdi:mower-on
+  - name: Mow frontyard
+    service: script.startmow_frontyard
+    icon: mdi:mower-on
 ```
 
 Here is what every option means:
 
-| Name           |   Type    | Default      | Description                                                                                               |
-| -------------- | :-------: | ------------ | --------------------------------------------------------------------------------------------------------- |
-| `type`         | `string`  | **Required** | `custom:lawn-mower-card`                                                                                      |
-| `entity`       | `string`  | **Required** | An entity_id within the `lawn-mover` domain.                                                                  |
-| `map`          | `string`  | Optional     | An entity_id within the `camera` domain, for streaming live lawn mower map.                                   |
-| `map_refresh`  | `integer` | `5`          | Update interval for map camera in seconds                                                                 |
+| Name           |   Type    | Default      | Description                                                                                           |
+| -------------- | :-------: | ------------ | ----------------------------------------------------------------------------------------------------- |
+| `type`         | `string`  | **Required** | `custom:lawn-mower-card`                                                                              |
+| `entity`       | `string`  | **Required** | An entity_id within the `lawn-mover` domain.                                                          |
+| `map`          | `string`  | Optional     | An entity_id within the `camera` domain, for streaming live lawn mower map.                           |
+| `map_refresh`  | `integer` | `5`          | Update interval for map camera in seconds                                                             |
 | `image`        | `string`  | `default`    | Path to image of your lawn mower. Better to have `png` or `svg`.                                      |
-| `battery`      | `string`  | `default`    | An entity_id within the `battery` of your lawn mower |
-| `show_name`    | `boolean` | `true`       | Show friendly name of the lawn mower.                                                                         |
-| `show_status`  | `boolean` | `true`       | Show status of the lawn mower.                                                                                |
-| `show_toolbar` | `boolean` | `true`       | Show toolbar with actions.                                                                                |
-| `compact_view` | `boolean` | `false`      | Compact view without image.                                                                               |
+| `battery`      | `string`  | `default`    | An entity_id within the `battery` of your lawn mower                                                  |
+| `show_name`    | `boolean` | `true`       | Show friendly name of the lawn mower.                                                                 |
+| `show_status`  | `boolean` | `true`       | Show status of the lawn mower.                                                                        |
+| `show_toolbar` | `boolean` | `true`       | Show toolbar with actions.                                                                            |
+| `compact_view` | `boolean` | `false`      | Compact view without image.                                                                           |
 | `stats`        | `object`  | Optional     | Custom per state stats for your lawn mower                                                            |
-| `actions`      | `object`  | Optional     | Override default actions behavior with service invocations.                                               |
+| `actions`      | `object`  | Optional     | Override default actions behavior with service invocations.                                           |
 | `shortcuts`    |  `array`  | Optional     | List of shortcuts shown at the right bottom part of the card with custom actions for your lawn mower. |
 
 ### `stats` object
@@ -129,7 +119,7 @@ You can use any attribute of lawn mower or even any entity by `entity_id` to dis
 
 | Name             |   Type   | Default  | Description                                                                                          |
 | ---------------- | :------: | -------- | ---------------------------------------------------------------------------------------------------- |
-| `entity_id`      | `string` | Optional | An entity_id with state, i.e. `sensor.lawn-mower`.                                                       |
+| `entity_id`      | `string` | Optional | An entity_id with state, i.e. `sensor.lawn-mower`.                                                   |
 | `attribute`      | `string` | Optional | Attribute name of the stat, i.e. `filter_left`.                                                      |
 | `value_template` | `string` | Optional | Jinja2 template returning a value. `value` variable represents the `entity_id` or `attribute` state. |
 | `unit`           | `string` | Optional | Unit of measure, i.e. `hours`.                                                                       |
@@ -162,7 +152,7 @@ This card can be styled by changing the values of these CSS properties (globally
 | Variable                    | Default value                                                    | Description                          |
 | --------------------------- | ---------------------------------------------------------------- | ------------------------------------ |
 | `--vc-background`           | `var(--ha-card-background, var(--card-background-color, white))` | Background of the card               |
-| `--vc-primary-text-color`   | `var(--primary-text-color)`                                      | Lawn Mower name, stats values, etc       |
+| `--vc-primary-text-color`   | `var(--primary-text-color)`                                      | Lawn Mower name, stats values, etc   |
 | `--vc-secondary-text-color` | `var(--secondary-text-color)`                                    | Status, stats units and titles, etc  |
 | `--vc-icon-color`           | `var(--secondary-text-color)`                                    | Colors of icons                      |
 | `--vc-toolbar-background`   | `var(--vc-background)`                                           | Background of the toolbar            |
@@ -199,9 +189,9 @@ style: |
 
 I've added some animations for this card to make it alive. Animations are applied only for `image` property. Here's how they look like:
 
-|              Cleaning               |                Docking                |
-| :---------------------------------: | :-----------------------------------: |
-| ![Cleaning anumation][cleaning-gif] | ![Returning anumation][returning-gif] |
+|          Cleaning           |              Docking              |
+| :-------------------------: | :-------------------------------: |
+| ![Mowing animation][mowing] | ![Returning animation][returning] |
 
 ## Supported languages
 
@@ -283,14 +273,12 @@ MIT © [Denys Dovhan][denysdovhan]
 
 [home-assistant]: https://www.home-assistant.io/
 [hacs]: https://hacs.xyz
-[preview-image]: https://github.com/denysdovhan/lawn-mower-card/assets/3459374/43808d3d-65a4-4e65-9531-4f248fa8861c
-[cleaning-gif]: https://user-images.githubusercontent.com/3459374/81119202-fa60b500-8f32-11ea-9b23-325efa93d7ab.gif
-[returning-gif]: https://user-images.githubusercontent.com/3459374/81119452-765afd00-8f33-11ea-9dc5-9c26ba3f8c45.gif
-[latest-release]: https://github.com/denysdovhan/lawn-mower-card/releases/latest
+[preview-image]: https://github.com/bhuebschen/lawn-mower-card/assets/3459374/43808d3d-65a4-4e65-9531-4f248fa8861c
+[returning]: https://github.com/bhuebschen/lawn-mower-card/assets/1864448/51fbd7b7-3811-4b66-9873-852250a32efc
+[mowing]: https://github.com/bhuebschen/lawn-mower-card/assets/1864448/a5b0a42d-ff87-46db-9b50-54a4f71d9107
+[latest-release]: https://github.com/bhuebschen/lawn-mower-card/releases/latest
 [ha-scripts]: https://www.home-assistant.io/docs/scripts/
-[edit-readme]: https://github.com/denysdovhan/lawn-mower-card/edit/master/README.md
+[edit-readme]: https://github.com/bhuebschen/lawn-mower-card/edit/master/README.md
 [card-mod]: https://github.com/thomasloven/lovelace-card-mod
-[add-translation]: https://github.com/denysdovhan/lawn-mower-card/blob/master/CONTRIBUTING.md#how-to-add-translation
-[macbury-smart-house]: https://macbury.github.io/SmartHouse/HomeAssistant/Vacuum/
-[bbbenji-card]: https://gist.github.com/bbbenji/24372e423f8669b2e6713638d8f8ceb2
+[add-translation]: https://github.com/bhuebschen/lawn-mower-card/blob/master/CONTRIBUTING.md#how-to-add-translation
 [denysdovhan]: https://denysdovhan.com
