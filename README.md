@@ -273,7 +273,6 @@ MIT © [Denys Dovhan][denysdovhan]
 
 [home-assistant]: https://www.home-assistant.io/
 [hacs]: https://hacs.xyz
-[preview-image]: https://github.com/bhuebschen/lawn-mower-card/assets/3459374/43808d3d-65a4-4e65-9531-4f248fa8861c
 [returning]: https://github.com/bhuebschen/lawn-mower-card/assets/1864448/51fbd7b7-3811-4b66-9873-852250a32efc
 [mowing]: https://github.com/bhuebschen/lawn-mower-card/assets/1864448/a5b0a42d-ff87-46db-9b50-54a4f71d9107
 [latest-release]: https://github.com/bhuebschen/lawn-mower-card/releases/latest
