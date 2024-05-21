@@ -1,6 +1,6 @@
 {
-  "name": "lawn-mower-card",
-  "version": "2.9.3",
+  "name": "@bhuebschen/lawn-mower-card",
+  "version": "1.0.0",
   "description": "Lawn Mower cleaner card for Home Assistant Lovelace UI",
   "main": "dist/lawn-mower-card.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "custom-cards",
     "lawn-mower"
   ],
-  "author": "Denys Dovhan <denysdovhan@gmail.com> (http://denysdovhan.com/)",
+  "author": "Benedikt Hübschen <benedikt@huebschen.wtf> (https://huebschen.wtf/)",
   "license": "MIT",
   "dependencies": {
     "custom-card-helpers": "^1.6.4",
@@ -52,7 +52,7 @@
     "postcss": "^8.4.6",
     "postcss-preset-env": "^9.1.3",
     "prettier": "^3.0.3",
-    "rollup": "^2.7.6",
+    "rollup": "^2.79.1",
     "rollup-plugin-minify-html-literals": "^1.2.6",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-postcss-lit": "^2.0.0",
@@ -106,5 +106,13 @@
       ],
       "@semantic-release/git"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhuebschen/lawn-mower-card.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bhuebschen/lawn-mower-card/issues"
+  },
+  "homepage": "https://github.com/bhuebschen/lawn-mower-card#readme"
 }

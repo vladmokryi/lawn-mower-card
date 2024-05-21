@@ -126,23 +126,6 @@ ha-card {
   }
 }
 
-@-moz-keyframes spin {
-  100% { -moz-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-  100% { -webkit-transform: rotate(360deg); }
-}
-@keyframes spin {
-  100% {
-      -webkit-transform: rotate(360deg);
-      transform:rotate(360deg);
-  }
-}
-
-.lawn-mower.mowing #mowerblades {
-  animation: spin 0.3s infinite linear;
-}
-
 .lawn-mower {
   display: block;
   max-width: 90%;
