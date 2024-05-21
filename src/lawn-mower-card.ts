@@ -59,7 +59,9 @@ export class LawnMowerCard extends LitElement {
   }
 
   static getStubConfig(_: unknown, entities: string[]) {
-    const [lawnMowerEntity] = entities.filter((eid) => eid.startsWith('lawn-mower'));
+    const [lawnMowerEntity] = entities.filter((eid) =>
+      eid.startsWith('lawn-mower'),
+    );
 
     return {
       entity: lawnMowerEntity ?? '',
@@ -155,7 +157,11 @@ export class LawnMowerCard extends LitElement {
 
   private handleSpeed(e: PointerEvent): void {
     const fan_speed = (<HTMLDivElement>e.target).getAttribute('value');
-    this.callLawnMowerService('set_fan_speed', { request: false }, { fan_speed });
+    this.callLawnMowerService(
+      'set_fan_speed',
+      { request: false },
+      { fan_speed },
+    );
   }
 
   private handleLawnMowerAction(
@@ -164,7 +170,10 @@ export class LawnMowerCard extends LitElement {
   ) {
     return () => {
       if (!this.config.actions[action]) {
-        return this.callLawnMowerService(params.defaultService || action, params);
+        return this.callLawnMowerService(
+          params.defaultService || action,
+          params,
+        );
       }
 
       this.callService(this.config.actions[action]);
@@ -217,7 +226,25 @@ export class LawnMowerCard extends LitElement {
   }
 
   private renderBattery(): Template {
-    const { battery_level, battery_icon } = this.getAttributes(this.entity);
+    let battery_level;
+    let battery_icon;
+
+    if (this.config.battery) {
+      battery_level = Number(this.hass.states[this.config.battery].state);
+
+      const level = Number(battery_level);
+
+      if (level > 90) {
+        battery_icon = 'mdi:battery';
+      } else if (level < 10) {
+        battery_icon = 'mdi:battery-outline';
+      } else {
+        const iconLevel = Math.floor(level / 10) * 10;
+        battery_icon = `mdi:battery-${iconLevel}`;
+      }
+    } else {
+      ({ battery_level, battery_icon } = this.getAttributes(this.entity));
+    }
 
     return html`
       <div class="tip" @click="${() => this.handleMore()}">
@@ -358,7 +385,9 @@ export class LawnMowerCard extends LitElement {
               <ha-icon icon="hass:stop"></ha-icon>
               ${localize('common.stop')}
             </paper-button>
-            <paper-button @click="${this.handleLawnMowerAction('return_to_base')}">
+            <paper-button
+              @click="${this.handleLawnMowerAction('return_to_base')}"
+            >
               <ha-icon icon="hass:home-map-marker"></ha-icon>
               ${localize('common.return_to_base')}
             </paper-button>
@@ -378,7 +407,9 @@ export class LawnMowerCard extends LitElement {
               <ha-icon icon="hass:play"></ha-icon>
               ${localize('common.continue')}
             </paper-button>
-            <paper-button @click="${this.handleLawnMowerAction('return_to_base')}">
+            <paper-button
+              @click="${this.handleLawnMowerAction('return_to_base')}"
+            >
               <ha-icon icon="hass:home-map-marker"></ha-icon>
               ${localize('common.return_to_base')}
             </paper-button>
@@ -441,7 +472,9 @@ export class LawnMowerCard extends LitElement {
 
             <ha-icon-button
               label="${localize('common.locate')}"
-              @click="${this.handleLawnMowerAction('locate', { request: false })}"
+              @click="${this.handleLawnMowerAction('locate', {
+                request: false,
+              })}"
               ><ha-icon icon="mdi:map-marker"></ha-icon>
             </ha-icon-button>
 

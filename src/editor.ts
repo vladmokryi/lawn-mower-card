@@ -15,7 +15,10 @@ type ConfigElement = HTMLInputElement & {
 };
 
 @customElement('lawn-mower-card-editor')
-export class LawnMowerCardEditor extends LitElement implements LovelaceCardEditor {
+export class LawnMowerCardEditor
+  extends LitElement
+  implements LovelaceCardEditor
+{
   @property({ attribute: false }) public hass?: HomeAssistant;
 
   @state() private config!: Partial<LawnMowerCardConfig>;
@@ -68,9 +71,10 @@ export class LawnMowerCardEditor extends LitElement implements LovelaceCardEdito
             validationMessage=${localize('error.missing_entity')}
           >
             ${lawnMowerEntities.map(
-              (entity) => html` <mwc-list-item .value=${entity}
-                >${entity}</mwc-list-item
-              >`
+              (entity) =>
+                html` <mwc-list-item .value=${entity}
+                  >${entity}</mwc-list-item
+                >`,
             )}
           </ha-select>
         </div>
@@ -86,9 +90,10 @@ export class LawnMowerCardEditor extends LitElement implements LovelaceCardEdito
             naturalMenuWidth
           >
             ${cameraEntities.map(
-              (entity) => html` <mwc-list-item .value=${entity}
-                >${entity}</mwc-list-item
-              >`
+              (entity) =>
+                html` <mwc-list-item .value=${entity}
+                  >${entity}</mwc-list-item
+                >`,
             )}
           </ha-select>
         </div>
@@ -107,7 +112,7 @@ export class LawnMowerCardEditor extends LitElement implements LovelaceCardEdito
             aria-label=${localize(
               this.compact_view
                 ? 'editor.compact_view_aria_label_off'
-                : 'editor.compact_view_aria_label_on'
+                : 'editor.compact_view_aria_label_on',
             )}
             .checked=${Boolean(this.compact_view)}
             .configValue=${'compact_view'}
@@ -122,7 +127,7 @@ export class LawnMowerCardEditor extends LitElement implements LovelaceCardEdito
             aria-label=${localize(
               this.show_name
                 ? 'editor.show_name_aria_label_off'
-                : 'editor.show_name_aria_label_on'
+                : 'editor.show_name_aria_label_on',
             )}
             .checked=${Boolean(this.show_name)}
             .configValue=${'show_name'}
@@ -137,7 +142,7 @@ export class LawnMowerCardEditor extends LitElement implements LovelaceCardEdito
             aria-label=${localize(
               this.show_status
                 ? 'editor.show_status_aria_label_off'
-                : 'editor.show_status_aria_label_on'
+                : 'editor.show_status_aria_label_on',
             )}
             .checked=${Boolean(this.show_status)}
             .configValue=${'show_status'}
@@ -152,7 +157,7 @@ export class LawnMowerCardEditor extends LitElement implements LovelaceCardEdito
             aria-label=${localize(
               this.show_toolbar
                 ? 'editor.show_toolbar_aria_label_off'
-                : 'editor.show_toolbar_aria_label_on'
+                : 'editor.show_toolbar_aria_label_on',
             )}
             .checked=${Boolean(this.show_toolbar)}
             .configValue=${'show_toolbar'}

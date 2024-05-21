@@ -2,7 +2,7 @@ import localize from './localize';
 import { LawnMowerCardConfig } from './types';
 
 export default function buildConfig(
-  config?: Partial<LawnMowerCardConfig>
+  config?: Partial<LawnMowerCardConfig>,
 ): LawnMowerCardConfig {
   if (!config) {
     throw new Error(localize('error.invalid_config'));
