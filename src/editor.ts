@@ -50,7 +50,7 @@ export class LawnMowerCardEditor
       return nothing;
     }
 
-    const lawnMowerEntities = this.getEntitiesByType('lawn-mower');
+    const lawnMowerEntities = this.getEntitiesByType('lawn_mower');
     const cameraEntities = [
       ...this.getEntitiesByType('camera'),
       ...this.getEntitiesByType('image'),
