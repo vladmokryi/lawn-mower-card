@@ -1,10 +1,11 @@
 {
   "status": {
-    "cleaning": "Takarítás",
-    "auto": "Automatikus takarítás",
-    "spot": "Célzott takarítás",
-    "edge": "Széltakarítás",
-    "single_room": "Egyetlen szoba takarítás",
+    "cleaning": "Nyírás",
+    "auto": "Automatikus nyírás",
+    "spot": "Célzott nyírás",
+    "edge": "Szegélynyírás",
+    "edgecut": "Szegélynyírás",
+    "single_room": "Egyetlen szoba nyírás",
     "paused": "Szüneteltetve",
     "idle": "Tétlen",
     "stop": "Megállítva",
@@ -21,8 +22,8 @@
     "shutting_down": "Kikapcsolás",
     "updating": "Frissítés",
     "going_to_target": "Cél felé halad",
-    "zoned_cleaning": "Zóna takarítás",
-    "segment_cleaning": "Szegmens takarítás"
+    "zoned_cleaning": "Zóna nyírás",
+    "segment_cleaning": "Szegmens nyírás"
   },
   "source": {
     "gentle": "Gyengéd",
@@ -42,15 +43,15 @@
     "off": "Kikapcsolva"
   },
   "common": {
-    "name": "Porszívó kártya",
-    "description": "A porszívó kártya lehetővé teszi a robotporszívó vezérlését.",
+    "name": "Fűnyíró kártya",
+    "description": "A fűnyíró kártya lehetővé teszi a robotfűnyíró vezérlését.",
     "start": "Indítás",
     "continue": "Folytatás",
     "pause": "Szünet",
     "stop": "Megállás",
     "return_to_base": "Dokkolás",
-    "locate": "Porszívó keresése",
-    "not_available": "A porszívó nem elérhető"
+    "locate": "Fűnyíró keresése",
+    "not_available": "A fűnyíró nem elérhető"
   },
   "error": {
     "invalid_config": "Érvénytelen konfiguráció",
@@ -75,6 +76,9 @@
     "show_toolbar": "Eszköztár megjelenítése",
     "show_toolbar_aria_label_on": "Eszköztár megjelenítésének bekapcsolása",
     "show_toolbar_aria_label_off": "Eszköztár megjelenítésének kikapcsolása",
+    "show_shortcuts": "További ikonok megjelenítése",
+    "show_shortcuts_aria_label_on": "További ikonok megjelenítésének bekapcsolása",
+    "show_shortcuts_aria_label_off": "További ikonok megjelenítésének kikapcsolása",
     "code_only_note": "Megjegyzés: A műveletek és statisztika beállítások kizárólag a kód szerkesztő használatával érhetők el."
   }
 }

@@ -4,6 +4,7 @@
     "auto": "Automatic mowing",
     "spot": "Spot mowing",
     "edge": "Edge mowing",
+    "edgecut": "Edge mowing",
     "single_room": "Single area mowing",
     "paused": "Paused",
     "idle": "Idle",
@@ -75,6 +76,9 @@
     "show_toolbar": "Show Toolbar",
     "show_toolbar_aria_label_on": "Toggle display toolbar on",
     "show_toolbar_aria_label_off": "Toggle display toolbar off",
+    "show_shortcuts": "Show Shortcuts",
+    "show_shortcuts_aria_label_on": "Toggle display shortcuts bar on",
+    "show_shortcuts_aria_label_off": "Toggle display shortcuts bar off",
     "code_only_note": "Note: Setting actions and stats options are available exclusively using Code Editor."
   }
 }

@@ -355,14 +355,38 @@ export class LawnMowerCard extends LitElement {
         <span class="status-text" alt=${localizedStatus}>
           ${localizedStatus}
         </span>
-        <ha-circular-progress
-          .indeterminate=${this.requestInProgress}
-          size="small"
-        ></ha-circular-progress>
       </div>
     `;
   }
 
+  private renderShortcuts(): Template {
+    if (!this.config.show_shortcuts) {
+      return nothing;
+    }
+
+        const buttons = this.config.shortcuts.map(
+          ({ name, service, icon, service_data }) => {
+            const execute = () => {
+              if (service) {
+                return this.callService({ service, service_data });
+              }
+            };
+            return html`
+              <ha-icon-button label="${name}" @click="${execute}">
+                <ha-icon icon="${icon}"></ha-icon>
+              </ha-icon-button>
+            `;
+          },
+        );
+
+
+        return html`
+          <div class="shortcuts">
+            ${buttons}
+          </div>
+        `;
+    }
+  
   private renderToolbar(state: LawnMowerEntityState): Template {
     if (!this.config.show_toolbar) {
       return nothing;
@@ -440,20 +464,6 @@ export class LawnMowerCard extends LitElement {
       case 'docked':
       case 'idle':
       default: {
-        const buttons = this.config.shortcuts.map(
-          ({ name, service, icon, service_data }) => {
-            const execute = () => {
-              if (service) {
-                return this.callService({ service, service_data });
-              }
-            };
-            return html`
-              <ha-icon-button label="${name}" @click="${execute}">
-                <ha-icon icon="${icon}"></ha-icon>
-              </ha-icon-button>
-            `;
-          },
-        );
 
         const dockButton = html`
           <ha-icon-button
@@ -480,8 +490,6 @@ export class LawnMowerCard extends LitElement {
             </ha-icon-button>
 
             ${state === 'idle' ? dockButton : ''}
-            <div class="fill-gap"></div>
-            ${buttons}
           </div>
         `;
       }
@@ -533,6 +541,7 @@ export class LawnMowerCard extends LitElement {
         </div>
 
         ${this.renderToolbar(this.entity.state)}
+        ${this.renderShortcuts()}
       </ha-card>
     `;
   }

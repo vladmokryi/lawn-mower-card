@@ -28,6 +28,7 @@ export class LawnMowerCardEditor
   @state() private show_name = true;
   @state() private show_status = true;
   @state() private show_toolbar = true;
+  @state() private show_shortcuts = true;
 
   setConfig(config: LovelaceCardConfig & LawnMowerCardConfig): void {
     this.config = config;
@@ -165,6 +166,21 @@ export class LawnMowerCardEditor
           >
           </ha-switch>
           ${localize('editor.show_toolbar')}
+        </div>
+
+        <div class="option">
+          <ha-switch
+            aria-label=${localize(
+              this.show_shortcuts
+                ? 'editor.show_shortcuts_aria_label_off'
+                : 'editor.show_shortcuts_aria_label_on',
+            )}
+            .checked=${Boolean(this.show_shortcuts)}
+            .configValue=${'show_shortcuts'}
+            @change=${this.valueChanged}
+          >
+          </ha-switch>
+          ${localize('editor.show_shortcuts')}
         </div>
 
         <strong>${localize('editor.code_only_note')}</strong>
