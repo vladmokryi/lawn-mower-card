@@ -26,6 +26,7 @@ export default function buildConfig(
     show_name: config.show_name ?? true,
     show_status: config.show_status ?? true,
     show_toolbar: config.show_toolbar ?? true,
+    show_shortcuts: config.show_shortcuts ?? true,
     compact_view: config.compact_view ?? false,
     stats: config.stats ?? {},
     actions: config.actions ?? {},
