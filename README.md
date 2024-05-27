@@ -57,6 +57,8 @@ Typical example of using this card in YAML config would look like this:
 type: custom:lawn-mower-card
 entity: lawn_mower.lawn_mower
 battery: sensor.lawn_mower_battery
+show_toolbar: true
+show_shortcuts: false
 actions:
   start:
     service: lawn_mower.start_mowing
@@ -99,6 +101,7 @@ Here is what every option means:
 | `show_name`    | `boolean` | `true`       | Show friendly name of the lawn mower.                                                                 |
 | `show_status`  | `boolean` | `true`       | Show status of the lawn mower.                                                                        |
 | `show_toolbar` | `boolean` | `true`       | Show toolbar with actions.                                                                            |
+|`show_shortcuts`| `boolean` | `true`       | Show Shortcuts bar.                                                                                   |
 | `compact_view` | `boolean` | `false`      | Compact view without image.                                                                           |
 | `stats`        | `object`  | Optional     | Custom per state stats for your lawn mower                                                            |
 | `actions`      | `object`  | Optional     | Override default actions behavior with service invocations.                                           |
@@ -224,6 +227,7 @@ This card relies on basic lawn-mower services, like `pause`, `start`, `stop`, `r
 If this card works with your lawn mower, please open a PR and your model to the list.
 
 - **EcoVacs** GOAT G1, GOAT G1-800, GOAT G1-2000, GOAT GX-600
+- **Tuya based** lawn-mowers
 
 - [_Your lawn mower?_][edit-readme]
 
