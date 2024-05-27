@@ -1,10 +1,11 @@
 {
   "status": {
-    "cleaning": "Takarítás",
-    "auto": "Automatikus takarítás",
-    "spot": "Célzott takarítás",
-    "edge": "Széltakarítás",
-    "single_room": "Egyetlen szoba takarítás",
+    "cleaning": "Nyírás",
+    "auto": "Automatikus nyírás",
+    "spot": "Célzott nyírás",
+    "edge": "Szegélynyírás",
+    "edgecut": "Szegélynyírás",
+    "single_room": "Egyetlen szoba nyírás",
     "paused": "Szüneteltetve",
     "idle": "Tétlen",
     "stop": "Megállítva",
@@ -21,8 +22,8 @@
     "shutting_down": "Kikapcsolás",
     "updating": "Frissítés",
     "going_to_target": "Cél felé halad",
-    "zoned_cleaning": "Zóna takarítás",
-    "segment_cleaning": "Szegmens takarítás"
+    "zoned_cleaning": "Zóna nyírás",
+    "segment_cleaning": "Szegmens nyírás"
   },
   "source": {
     "gentle": "Gyengéd",
