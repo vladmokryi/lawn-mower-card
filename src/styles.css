@@ -9,6 +9,9 @@
   --vc-toolbar-background: var(--vc-background);
   --vc-toolbar-text-color: var(--secondary-text-color);
   --vc-toolbar-icon-color: var(--secondary-text-color);
+  --vc-shortcuts-background: var(--vc-background);
+  --vc-shortcuts-text-color: var(--secondary-text-color);
+  --vc-shortcuts-icon-color: var(--secondary-text-color);
   --vc-divider-color: var(--entities-divider-color, var(--divider-color));
   --vc-spacing: 10px;
 
@@ -268,6 +271,45 @@ ha-icon {
 
 .toolbar ha-icon {
   color: var(--vc-toolbar-icon-color);
+  display: flex;
+}
+
+.shortcuts {
+  background: var(--vc-shortcuts-background);
+  min-height: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 5px;
+  border-top: 1px solid var(--vc-divider-color);
+}
+
+.shortcuts ha-icon-button {
+  color: var(--vc-shortcuts-text-color);
+  flex-direction: column;
+  width: 44px;
+  height: 44px;
+  --mdc-icon-button-size: 44px;
+}
+
+.shortcuts paper-button {
+  color: var(--vc-toolbar-text-color);
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  padding: 15px 10px;
+  cursor: pointer;
+
+  & ha-icon {
+    margin-right: 5px;
+    color: var(--vc-shortcuts-icon-color);
+  }
+}
+
+.shortcuts ha-icon {
+  color: var(--vc-shortcuts-icon-color);
   display: flex;
 }
 
