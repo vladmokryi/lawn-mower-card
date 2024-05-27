@@ -294,7 +294,7 @@ ha-icon {
 }
 
 .shortcuts paper-button {
-  color: var(--vc-toolbar-text-color);
+  color: var(--vc-shortcuts-text-color);
   display: flex;
   align-items: center;
   margin-right: 10px;
