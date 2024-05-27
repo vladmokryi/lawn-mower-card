@@ -364,28 +364,28 @@ export class LawnMowerCard extends LitElement {
       return nothing;
     }
 
-        const buttons = this.config.shortcuts.map(
-          ({ name, service, icon, service_data }) => {
-            const execute = () => {
-              if (service) {
-                return this.callService({ service, service_data });
-              }
-            };
-            return html`
-              <ha-icon-button label="${name}" @click="${execute}">
-                <ha-icon icon="${icon}"></ha-icon>
-              </ha-icon-button>
-            `;
-          },
-        );
-
-
+    const buttons = this.config.shortcuts.map(
+      ({ name, service, icon, service_data }) => {
+        const execute = () => {
+          if (service) {
+            return this.callService({ service, service_data });
+          }
+        };
         return html`
-          <div class="shortcuts">
-            ${buttons}
-          </div>
+          <ha-icon-button label="${name}" @click="${execute}">
+            <ha-icon icon="${icon}"></ha-icon>
+          </ha-icon-button>
         `;
-    }
+      },
+    );
+
+
+    return html`
+      <div class="shortcuts">
+        ${buttons}
+      </div>
+    `;
+  }
   
   private renderToolbar(state: LawnMowerEntityState): Template {
     if (!this.config.show_toolbar) {
