@@ -62,6 +62,7 @@ export interface LawnMowerCardConfig {
   show_name: boolean;
   show_status: boolean;
   show_toolbar: boolean;
+  show_shortcuts: boolean;
   compact_view: boolean;
   stats: Record<string, LawnMowerCardStat[]>;
   actions: Record<string, LawnMowerCardAction>;
