@@ -4,6 +4,7 @@
     "auto": "Automatic mowing",
     "spot": "Spot mowing",
     "edge": "Edge mowing",
+    "edgecut": "Edge mowing",
     "single_room": "Single area mowing",
     "paused": "Paused",
     "idle": "Idle",
