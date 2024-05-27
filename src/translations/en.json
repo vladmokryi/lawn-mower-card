@@ -75,6 +75,9 @@
     "show_toolbar": "Show Toolbar",
     "show_toolbar_aria_label_on": "Toggle display toolbar on",
     "show_toolbar_aria_label_off": "Toggle display toolbar off",
+    "show_toolbar": "Show Shortcuts",
+    "show_toolbar_aria_label_on": "Toggle display shortcuts bar on",
+    "show_toolbar_aria_label_off": "Toggle display shortcuts bar off",
     "code_only_note": "Note: Setting actions and stats options are available exclusively using Code Editor."
   }
 }
