@@ -1,0 +1,23 @@
+name: Validate
+
+on:
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: ⬢ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '*'
+          cache: npm
+
+      - name: 📦 Install Packages
+        run: npm ci
+
+      - name: 🧪 Test
+        run: npm test
