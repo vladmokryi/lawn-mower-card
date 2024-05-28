@@ -59,11 +59,13 @@ jobs:
             --draft
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       
       - name: Upload Release Asset
         run: |
           gh release upload v${{ env.PACKAGE_VERSION }} ./dist/lawn-mower-card.js
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           
           
