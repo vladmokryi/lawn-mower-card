@@ -45,9 +45,10 @@ jobs:
       - name: Run build and get version
         id: build
         run: |
-          OUTPUT=$(npm run build)
-          VERSION=$(echo $OUTPUT | grep -oP 'lawn-mower-card@\K[^ ]+')
-          echo "PACKAGE_VERSION=$VERSION" >> $GITHUB_ENV
+          OUTPUT=$(npm run build) \
+          VERSION=$(echo $OUTPUT | grep -oP 'lawn-mower-card@\K[^ ]+') \
+          echo "PACKAGE_VERSION=$VERSION" >> $GITHUB_ENV \
+          echo "$VERSION"
       
       - name: Create Release
         run: |
@@ -56,6 +57,8 @@ jobs:
             --title="${{ env.PACKAGE_VERSION }}" \
             --notes="Release notes for v${{ env.PACKAGE_VERSION }}" \
             --draft
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       
       - name: Upload Release Asset
         run: |
