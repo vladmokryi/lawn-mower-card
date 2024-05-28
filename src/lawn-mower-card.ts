@@ -355,6 +355,10 @@ export class LawnMowerCard extends LitElement {
         <span class="status-text" alt=${localizedStatus}>
           ${localizedStatus}
         </span>
+        <ha-circular-progress
+          .indeterminate=${this.requestInProgress}
+          size="small"
+          ></ha-circular-progress>
       </div>
     `;
   }
