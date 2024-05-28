@@ -1,6 +1,6 @@
 {
   "name": "lawn-mower-card",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Lawn Mower cleaner card for Home Assistant Lovelace UI",
   "main": "dist/lawn-mower-card.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "custom-cards",
     "lawn-mower"
   ],
-  "author": "Benedikt Hübschen <benedikt@huebschen.wtf> (https://huebschen.wtf/)",
+  "author": "cociweb",
   "license": "MIT",
   "dependencies": {
     "custom-card-helpers": "^1.6.4",
