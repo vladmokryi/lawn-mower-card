@@ -43,7 +43,10 @@ jobs:
         run: npm ci
 
       - name: 🏗 Build
-        run: npm run build
+        run: |
+          OUTPUT=$(npm run build) \
+          VERSION=$(echo $OUTPUT | grep -oP 'lawn-mower-card@\K[^ ]+') \
+          echo "PACKAGE_VERSION=$VERSION" >> $GITHUB_ENV \
 
 #      - name: 🚀 Release
 #        run: |
@@ -61,9 +64,6 @@ jobs:
 #          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 #          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Get version
-        id: package
-        run: echo "PACKAGE_VERSION=$(node -p 'require(\"./package.json\").version')" >> $GITHUB_ENV
 
       - name: Create Release
         id: create_release
