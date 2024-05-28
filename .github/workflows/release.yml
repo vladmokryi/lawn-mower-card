@@ -45,11 +45,46 @@ jobs:
       - name: 🏗 Build
         run: npm run build
 
-      - name: 🚀 Release
-        run: |
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc \
-          echo "//registry.npmjs.org/:always-auth=true" >> ~/.npmrc \
-          npx semantic-release
+#      - name: 🚀 Release
+#        run: |
+#          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc \
+#          echo "//registry.npmjs.org/:always-auth=true" >> ~/.npmrc \
+#          npx semantic-release
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+#          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+#      - name: 🚀 Release
+#        run: npm publish --access public
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+#          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+#          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Get version
+        id: package
+        run: echo "::set-output name=version::$(node -p \"require('./package.json').version\")"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          tag_name: v${{ steps.package.outputs.version }}
+          release_name: ${{ steps.package.outputs.version }}
+          draft: true
+          prerelease: false
+          
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./dist/lawn-mower-card.js
+          asset_name: lawn-mower-card.js
+          
+          
