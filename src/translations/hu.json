@@ -1,6 +1,6 @@
 {
   "status": {
-    "cleaning": "Nyírás",
+    "mowing": "Nyírás",
     "auto": "Automatikus nyírás",
     "spot": "Célzott nyírás",
     "edge": "Szegélynyírás",
