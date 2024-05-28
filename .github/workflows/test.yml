@@ -2,6 +2,7 @@ name: Validate
 
 on:
   push:
+  workflow_call:
 
 jobs:
   validate:
