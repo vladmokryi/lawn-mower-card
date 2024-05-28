@@ -4,6 +4,8 @@ on:
   push:
 
 jobs:
+  validate:
+    uses: ./.github/workflows/test.yml
   dependabot:
     name: Dependabot Auto-merge
     runs-on: ubuntu-latest
