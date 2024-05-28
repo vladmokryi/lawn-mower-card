@@ -1,10 +1,14 @@
-name: Main
+name: Release
+
 on:
   push:
+    paths:
+      - 'package.json'
     branches:
       - main
     tags: [ 'v*.*.*' ]
   workflow_dispatch:
+
 
 permissions:
   contents: write
@@ -15,28 +19,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  validate:
-    name: Validate
-    runs-on: ubuntu-latest
-    steps:
-      - name: ⬇️ Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: ⬢ Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '*'
-          cache: npm
-
-      - name: 📦 Install Packages
-        run: npm ci
-
-      - name: 🧪 Test
-        run: npm test
-
-
-
-
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -87,21 +69,5 @@ jobs:
           asset_path: ./dist/lawn-mower-card.js
           asset_name: lawn-mower-card.js
 
-  dependabot:
-    name: Dependabot Auto-merge
-    runs-on: ubuntu-latest
-    needs: [validate]
-    if: github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'
-    steps:
-      - name: 💿 Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: ↔️ Enable Auto-merge for minor and patch Dependabot PRs
-        run: gh pr merge --auto --squash "$PR_URL"
-        if: steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
-        env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
