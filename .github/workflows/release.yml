@@ -22,9 +22,9 @@ concurrency:
 jobs:
   validate:
     uses: ./.github/workflows/test.yml
-    concurrency:
-      group: validate-group
-      cancel-in-progress: true
+#    concurrency:
+#      group: validate-group
+#      cancel-in-progress: true
   release:
     name: Release
     runs-on: ubuntu-latest
