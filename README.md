@@ -1,10 +1,10 @@
 # Lawn Mower Card
 
-Based on https://github.com/denysdovhan/vacuum-card
+Based on https://github.com/denysdovhan/vacuum-card and https://github.com/bhuebschen/lawn-mower-card
 
 [![npm version][npm-image]][npm-url]
 [![hacs][hacs-image]][hacs-url]
-[![GitHub Sponsors][gh-sponsors-image]][gh-sponsors-url]
+
 
 > Lawn Mower card for [Home Assistant][home-assistant] Lovelace UI
 
@@ -12,13 +12,14 @@ By default, Home Assistant does not provide any card for controlling lawn mowers
 
 ![Preview of lawn-mower-card][preview-image]
 
+
 ## Installing
 
 ### HACS
 
-This card is available in [HACS][hacs] (Home Assistant Community Store).
+This card is available in [HACS][hacs] (Home Assistant Community Store) as a custom repository. 
 
-Just search for `Lawn Mower Card` in plugins tab.
+Just add the [https://github.com/cociweb/lawn-mower-card](https://github.com/cociweb/lawn-mower-card) repository.
 
 ### Manual
 
@@ -227,7 +228,7 @@ This card relies on basic lawn-mower services, like `pause`, `start`, `stop`, `r
 If this card works with your lawn mower, please open a PR and your model to the list.
 
 - **EcoVacs** GOAT G1, GOAT G1-800, GOAT G1-2000, GOAT GX-600
-- **Tuya based** lawn-mowers
+- **Tuya based** lawn-mowers (with tuya-local or localtuya)
 
 - [_Your lawn mower?_][edit-readme]
 
@@ -242,21 +243,23 @@ First of all, thanks! Check [contributing guideline](./CONTRIBUTING.md) for more
 This project is heavily inspired by:
 
 - [Denys Dovhan][denysdovhan] — basically, this project is a modified vacuum-card.
+- [Benedikt Hübschen][bhuebschen] — the first idea to reuse the vacuum-card as a lawn-mower card
 
 Huge thanks for their ideas and efforts 👍
 
 ## License
 
-MIT © [Benedikt Hübschen][bhuebschen]
+MIT © 
+[cociweb]
+[denysdovhan]
+[bhuebschen]
 
 <!-- Badges -->
 
-[npm-url]: https://npmjs.org/package/@bhuebschen/lawn-mower-card
-[npm-image]: https://img.shields.io/npm/v/@bhuebschen/lawn-mower-card.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/lawn-mower-card
+[npm-image]: https://img.shields.io/npm/v/lawn-mower-card.svg?style=flat-square
 [hacs-url]: https://github.com/hacs/integration
 [hacs-image]: https://img.shields.io/badge/hacs-custom-orange.svg?style=flat-square
-[gh-sponsors-url]: https://github.com/sponsors/bhuebschen
-[gh-sponsors-image]: https://img.shields.io/github/sponsors/bhuebschen?style=flat-square
 
 <!-- References -->
 
@@ -264,9 +267,12 @@ MIT © [Benedikt Hübschen][bhuebschen]
 [hacs]: https://hacs.xyz
 [returning]: https://github.com/bhuebschen/lawn-mower-card/assets/1864448/51fbd7b7-3811-4b66-9873-852250a32efc
 [mowing]: https://github.com/bhuebschen/lawn-mower-card/assets/1864448/a5b0a42d-ff87-46db-9b50-54a4f71d9107
-[latest-release]: https://github.com/bhuebschen/lawn-mower-card/releases/latest
+[preview-image]:https://github.com/cociweb/lawn-mower-card/assets/1935413/eeaf9425-e11d-49e1-8730-cf4d9fab2020
+[latest-release]: https://github.com/cociweb/lawn-mower-card/releases/latest
 [ha-scripts]: https://www.home-assistant.io/docs/scripts/
-[edit-readme]: https://github.com/bhuebschen/lawn-mower-card/edit/master/README.md
+[edit-readme]: https://github.com/cociweb/lawn-mower-card/edit/master/README.md
 [card-mod]: https://github.com/thomasloven/lovelace-card-mod
-[add-translation]: https://github.com/bhuebschen/lawn-mower-card/blob/master/CONTRIBUTING.md#how-to-add-translation
+[add-translation]: https://github.com/cociweb/lawn-mower-card/blob/master/CONTRIBUTING.md#how-to-add-translation
 [denysdovhan]: https://denysdovhan.com
+[bhuebschen]: https://huebschen.wtf
+[cociweb]: https://github.com/cociweb
