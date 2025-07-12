@@ -59,6 +59,8 @@ export interface LawnMowerCardConfig {
   map_refresh: number;
   image: string;
   battery: string;
+  temperature: string;
+  humidity: string;
   show_name: boolean;
   show_status: boolean;
   show_toolbar: boolean;

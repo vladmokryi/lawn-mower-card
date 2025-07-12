@@ -254,6 +254,44 @@ export class LawnMowerCard extends LitElement {
     `;
   }
 
+  private renderTemperature(): Template {
+    let value;
+    let icon;
+
+    if (this.config.temperature) {
+      value = Number(this.hass.states[this.config.temperature].state);
+      icon = 'mdi:thermometer';
+    } else {
+      return nothing;
+    }
+
+    return html`
+      <div class="tip" @click="${() => this.handleMore()}">
+        <ha-icon icon="${icon}"></ha-icon>
+        <span class="icon-title">${value}%</span>
+      </div>
+    `;
+  }
+
+  private renderHumidity(): Template {
+    let value;
+    let icon;
+
+    if (this.config.humidity) {
+      value = Number(this.hass.states[this.config.humidity].state);
+      icon = 'mdi:water-percent';
+    } else {
+      return nothing;
+    }
+
+    return html`
+      <div class="tip" @click="${() => this.handleMore()}">
+        <ha-icon icon="${icon}"></ha-icon>
+        <span class="icon-title">${value}%</span>
+      </div>
+    `;
+  }
+
   private renderMapOrImage(state: LawnMowerEntityState): Template {
     if (this.config.compact_view) {
       return nothing;
@@ -358,7 +396,7 @@ export class LawnMowerCard extends LitElement {
         <ha-circular-progress
           .indeterminate=${this.requestInProgress}
           size="small"
-          ></ha-circular-progress>
+        ></ha-circular-progress>
       </div>
     `;
   }
@@ -383,14 +421,9 @@ export class LawnMowerCard extends LitElement {
       },
     );
 
-
-    return html`
-      <div class="shortcuts">
-        ${buttons}
-      </div>
-    `;
+    return html` <div class="shortcuts">${buttons}</div> `;
   }
-  
+
   private renderToolbar(state: LawnMowerEntityState): Template {
     if (!this.config.show_toolbar) {
       return nothing;
@@ -468,7 +501,6 @@ export class LawnMowerCard extends LitElement {
       case 'docked':
       case 'idle':
       default: {
-
         const dockButton = html`
           <ha-icon-button
             label="${localize('common.return_to_base')}"
@@ -524,7 +556,8 @@ export class LawnMowerCard extends LitElement {
         <div class="preview">
           <div class="header">
             <div class="tips">
-              ${this.renderSource()} ${this.renderBattery()}
+              ${this.renderSource()} ${this.renderTemperature()}
+              ${this.renderHumidity()} ${this.renderBattery()}
             </div>
             <ha-icon-button
               class="more-info"
@@ -544,8 +577,7 @@ export class LawnMowerCard extends LitElement {
           ${this.renderStats(this.entity.state)}
         </div>
 
-        ${this.renderToolbar(this.entity.state)}
-        ${this.renderShortcuts()}
+        ${this.renderToolbar(this.entity.state)} ${this.renderShortcuts()}
       </ha-card>
     `;
   }
