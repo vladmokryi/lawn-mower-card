@@ -24,7 +24,8 @@
     "updating": "Оновлення",
     "going_to_target": "Рух до цілі",
     "zoned_cleaning": "Зональне прибирання",
-    "segment_cleaning": "Прибирання сегменту"
+    "segment_cleaning": "Прибирання сегменту",
+    "unavailable": "Недоступно"
   },
   "source": {
     "low": "Низький",

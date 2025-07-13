@@ -1,6 +1,6 @@
 # Lawn Mower Card
 
-Based on https://github.com/denysdovhan/vacuum-card and https://github.com/bhuebschen/lawn-mower-card
+Based on https://github.com/denysdovhan/vacuum-card and https://github.com/bhuebschen/lawn-mower-card and https://github.com/bhuebschen/lawn-mower-card
 
 [![npm version][npm-image]][npm-url]
 [![hacs][hacs-image]][hacs-url]

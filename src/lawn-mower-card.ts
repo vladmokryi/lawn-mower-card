@@ -231,7 +231,9 @@ export class LawnMowerCard extends LitElement {
 
     if (this.config.battery) {
       battery_level = Number(this.hass.states[this.config.battery].state);
-
+      if (isNaN(battery_level)) {
+        return nothing;
+      }
       const level = Number(battery_level);
 
       if (level > 90) {
@@ -260,6 +262,9 @@ export class LawnMowerCard extends LitElement {
 
     if (this.config.temperature) {
       value = Number(this.hass.states[this.config.temperature].state);
+      if (isNaN(value)) {
+        return nothing;
+      }
       icon = 'mdi:thermometer';
     } else {
       return nothing;
@@ -268,7 +273,7 @@ export class LawnMowerCard extends LitElement {
     return html`
       <div class="tip" @click="${() => this.handleMore()}">
         <ha-icon icon="${icon}"></ha-icon>
-        <span class="icon-title">${value}%</span>
+        <span class="icon-title">${value}°C</span>
       </div>
     `;
   }
@@ -279,6 +284,9 @@ export class LawnMowerCard extends LitElement {
 
     if (this.config.humidity) {
       value = Number(this.hass.states[this.config.humidity].state);
+      if (isNaN(value)) {
+        return nothing;
+      }
       icon = 'mdi:water-percent';
     } else {
       return nothing;
