@@ -29,7 +29,8 @@
     "standby": "Очікування",
     "emergency": "Аварія",
     "park": "Повертається",
-    "charging_with_task_suspend": "Заряджається із призупиненим завданням"
+    "charging_with_task_suspend": "Заряджається із призупиненим завданням",
+    "locked": "Заблокований"
   },
   "source": {
     "low": "Низький",
@@ -56,7 +57,7 @@
     "continue": "Продовжити",
     "pause": "Пауза",
     "stop": "Стоп",
-    "return_to_base": "На базу",
+    "return_to_base": "На док-станцію",
     "locate": "Знайти",
     "not_available": "Пилосос недоступний"
   },
