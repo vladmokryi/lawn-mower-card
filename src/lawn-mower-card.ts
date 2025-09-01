@@ -228,8 +228,10 @@ export class LawnMowerCard extends LitElement {
   private renderBattery(): Template {
     let battery_level;
     let battery_icon;
+    let entityId;
 
     if (this.config.battery) {
+      entityId = this.config.battery;
       battery_level = Number(this.hass.states[this.config.battery].state);
       if (isNaN(battery_level)) {
         return nothing;
@@ -245,11 +247,12 @@ export class LawnMowerCard extends LitElement {
         battery_icon = `mdi:battery-${iconLevel}`;
       }
     } else {
+      entityId = this.entity.entity_id;
       ({ battery_level, battery_icon } = this.getAttributes(this.entity));
     }
 
     return html`
-      <div class="tip" @click="${() => this.handleMore()}">
+      <div class="tip" @click="${() => this.handleMore(entityId)}">
         <ha-icon icon="${battery_icon}"></ha-icon>
         <span class="icon-title">${battery_level}%</span>
       </div>
@@ -259,9 +262,10 @@ export class LawnMowerCard extends LitElement {
   private renderTemperature(): Template {
     let value;
     let icon;
+    const entityId = this.config.temperature;
 
-    if (this.config.temperature) {
-      value = Number(this.hass.states[this.config.temperature].state);
+    if (entityId) {
+      value = Number(this.hass.states[entityId].state);
       if (isNaN(value)) {
         return nothing;
       }
@@ -271,7 +275,7 @@ export class LawnMowerCard extends LitElement {
     }
 
     return html`
-      <div class="tip" @click="${() => this.handleMore()}">
+      <div class="tip" @click="${() => this.handleMore(entityId)}">
         <ha-icon icon="${icon}"></ha-icon>
         <span class="icon-title">${value}°C</span>
       </div>
@@ -281,9 +285,10 @@ export class LawnMowerCard extends LitElement {
   private renderHumidity(): Template {
     let value;
     let icon;
+    const entityId = this.config.humidity;
 
-    if (this.config.humidity) {
-      value = Number(this.hass.states[this.config.humidity].state);
+    if (entityId) {
+      value = Number(this.hass.states[entityId].state);
       if (isNaN(value)) {
         return nothing;
       }
@@ -293,7 +298,7 @@ export class LawnMowerCard extends LitElement {
     }
 
     return html`
-      <div class="tip" @click="${() => this.handleMore()}">
+      <div class="tip" @click="${() => this.handleMore(entityId)}">
         <ha-icon icon="${icon}"></ha-icon>
         <span class="icon-title">${value}%</span>
       </div>
