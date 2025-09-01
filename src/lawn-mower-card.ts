@@ -33,6 +33,7 @@ console.info(
   'color: white; background: blue; font-weight: 700;',
   'color: blue; background: white; font-weight: 700;',
 );
+const debug: boolean = PKG_VERSION.toString() === 'DEVELOPMENT';
 
 if (!customElements.get('ha-icon-button')) {
   customElements.define(
@@ -389,25 +390,34 @@ export class LawnMowerCard extends LitElement {
       return nothing;
     }
 
-    return html` <div class="lawn-mower-name">${friendly_name}</div> `;
+    return html`
+      <div class="lawn-mower-name">
+        ${friendly_name}${debug ? ' (debug)' : ''}
+      </div>
+    `;
   }
 
   private renderStatus(): Template {
-    const { status, raw_activity } = this.getAttributes(this.entity);
-    let localizedStatus = localize(`status.${status.toLowerCase()}`) || status;
-    if (raw_activity) {
-      //use raw_activity instead of status because it is more detailed
-      localizedStatus =
-        localize(`status.${raw_activity.toLowerCase()}`) || raw_activity;
-    }
-
     if (!this.config.show_status) {
       return nothing;
     }
+    const { status, raw_activity } = this.getAttributes(this.entity);
+
+    let actualStatus = status;
+    if (raw_activity) {
+      //use raw_activity instead of status because it is more detailed
+      actualStatus = raw_activity;
+    }
+    const localizedStatus =
+      localize(`status.${actualStatus.toLowerCase()}`) || actualStatus;
 
     return html`
       <div class="status">
-        <span class="status-text" alt=${localizedStatus}>
+        <span
+          class="status-text"
+          alt=${localizedStatus}
+          title="${actualStatus}"
+        >
           ${localizedStatus}
         </span>
         <ha-circular-progress
@@ -442,6 +452,8 @@ export class LawnMowerCard extends LitElement {
   }
 
   private renderToolbar(state: LawnMowerEntityState): Template {
+    const { raw_activity } = this.getAttributes(this.entity);
+
     if (!this.config.show_toolbar) {
       return nothing;
     }
@@ -499,18 +511,9 @@ export class LawnMowerCard extends LitElement {
       case 'returning': {
         return html`
           <div class="toolbar">
-            <paper-button
-              @click="${this.handleLawnMowerAction('resume', {
-                defaultService: 'start',
-                request: true,
-              })}"
-            >
-              <ha-icon icon="hass:play"></ha-icon>
-              ${localize('common.continue')}
-            </paper-button>
-            <paper-button @click="${this.handleLawnMowerAction('pause')}">
-              <ha-icon icon="hass:pause"></ha-icon>
-              ${localize('common.pause')}
+            <paper-button @click="${this.handleLawnMowerAction('stop')}">
+              <ha-icon icon="hass:stop"></ha-icon>
+              ${localize('common.stop')}
             </paper-button>
           </div>
         `;
@@ -526,6 +529,24 @@ export class LawnMowerCard extends LitElement {
           </ha-icon-button>
         `;
 
+        const stopButton = html`
+          <ha-icon-button
+            label="${localize('common.stop')}"
+            @click="${this.handleLawnMowerAction('stop')}"
+            ><ha-icon icon="hass:stop"></ha-icon>
+          </ha-icon-button>
+        `;
+
+        const locateButton = html`
+          <ha-icon-button
+            label="${localize('common.locate')}"
+            @click="${this.handleLawnMowerAction('locate', {
+              request: false,
+            })}"
+            ><ha-icon icon="mdi:map-marker"></ha-icon>
+          </ha-icon-button>
+        `;
+
         return html`
           <div class="toolbar">
             <ha-icon-button
@@ -534,15 +555,13 @@ export class LawnMowerCard extends LitElement {
               ><ha-icon icon="hass:play"></ha-icon>
             </ha-icon-button>
 
-            <ha-icon-button
-              label="${localize('common.locate')}"
-              @click="${this.handleLawnMowerAction('locate', {
-                request: false,
-              })}"
-              ><ha-icon icon="mdi:map-marker"></ha-icon>
-            </ha-icon-button>
-
-            ${state === 'idle' ? dockButton : ''}
+            ${this.config.actions['locate'] ? locateButton : ''}
+            ${raw_activity?.toLowerCase() === 'charging_with_task_suspend'
+              ? stopButton
+              : ''}
+            ${state === 'idle' || raw_activity?.toLowerCase() === 'standby'
+              ? dockButton
+              : ''}
           </div>
         `;
       }
