@@ -25,7 +25,11 @@
     "going_to_target": "Рух до цілі",
     "zoned_cleaning": "Зональне прибирання",
     "segment_cleaning": "Прибирання сегменту",
-    "unavailable": "Недоступно"
+    "unavailable": "Недоступно",
+    "standby": "Очікування",
+    "emergency": "Аварія",
+    "park": "Повертається",
+    "charging_with_task_suspend": "Заряджається із призупиненим завданням"
   },
   "source": {
     "low": "Низький",

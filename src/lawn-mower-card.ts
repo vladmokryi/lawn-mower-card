@@ -393,9 +393,13 @@ export class LawnMowerCard extends LitElement {
   }
 
   private renderStatus(): Template {
-    const { status } = this.getAttributes(this.entity);
-    const localizedStatus =
-      localize(`status.${status.toLowerCase()}`) || status;
+    const { status, raw_activity } = this.getAttributes(this.entity);
+    let localizedStatus = localize(`status.${status.toLowerCase()}`) || status;
+    if (raw_activity) {
+      //use raw_activity instead of status because it is more detailed
+      localizedStatus =
+        localize(`status.${raw_activity.toLowerCase()}`) || raw_activity;
+    }
 
     if (!this.config.show_status) {
       return nothing;
